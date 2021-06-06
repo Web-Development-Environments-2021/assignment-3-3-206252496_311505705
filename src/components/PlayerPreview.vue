@@ -7,18 +7,12 @@
       <li> team name: {{ team_name }}</li>
       <li> position: {{ position }}</li>
       </ul>
-      <a
-        target="_blank"
-        :href= "image"
-        class="btn btn-primary"
-        >Get more data</a
-      >
     </div>
-    <!-- <img
-      :src="get_image(pok_name)"
+    <img
+      :src= "image"
       class="card-img-bottom"
-      style="height: 200px; width: auto"
-    /> -->
+      style="height: 200px; width: auto;text-align: center"
+    />
   </div>
 </template>
 
@@ -33,22 +27,21 @@ export default {
           name : "ori",
           team_name: "mor",
           image: "http",
-          position : 9
+          position : 3
     };
    },
   methods: {
         async getPlayerDetails(){
       try {
         const response = await this.axios.get(
-          `http://localhost:3000/players/playerDetailsById/${{player_id}}`,
+          `http://localhost:3000/players/playerDetailsById/${this.player_id}`,
         );
         // this.details = response;
-          console.log("player :")
-          console.log(response)
           this.name=response.data.name;
-          this.team_name=response.date.team_name;
-          this.Image=response.data.Image;
+          this.team_name=response.data.team_name;
           this.position=response.data.position;
+          this.image=response.data.image;
+
 
       } catch (error) {
         console.log("error in geting players details")

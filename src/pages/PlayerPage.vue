@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="title">Player Page</h1>
-    <playerPreview :player_id=939></playerPreview>
+    <playerPreview :player_id=678></playerPreview>
   </div>
 </template>
 
