@@ -7,6 +7,7 @@
   </div>
 </template>
 
+
 <script>
 import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGames";

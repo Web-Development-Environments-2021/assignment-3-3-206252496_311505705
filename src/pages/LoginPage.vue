@@ -76,6 +76,7 @@ export default {
       }
     };
   },
+  
   validations: {
     form: {
       username: {

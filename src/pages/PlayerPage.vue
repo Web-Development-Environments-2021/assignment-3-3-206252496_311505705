@@ -15,6 +15,8 @@ export default {
 };
 </script>
 
+
+
 <style lang="scss" scoped>
 .RandomRecipes {
   margin: 10px 0 10px;

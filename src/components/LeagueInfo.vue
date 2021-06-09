@@ -26,6 +26,7 @@
   </div>
 </template>
 
+
 <script>
 import GamePreview from "./GamePreview.vue";
 export default {
