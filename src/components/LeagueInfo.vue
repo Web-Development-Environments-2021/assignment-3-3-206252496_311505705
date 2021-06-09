@@ -14,18 +14,62 @@
       </b-card-text>
       <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
+    <br/>
+    <GamePreview 
+      title= "Next game details:"
+    :hostTeam= "hostTeam"
+    :guestTeam= "guestTeam" 
+    :date= "date" 
+    :hour= "hour" 
+    :stadium= "stadium" 
+    :key="555"></GamePreview>
   </div>
 </template>
 
+
 <script>
+import GamePreview from "./GamePreview.vue";
 export default {
- data() {
+  name: "LeagueInfo",
+  components: {
+    GamePreview
+  },  data() {
     return {
       leagueName: "superliga", 
       season: "season", 
-      stage: "stage"
+      stage: "stage",
+      hostTeam: "hostTeam",
+      guestTeam: "guestTeam" ,
+      date: "date" ,
+      hour: "hour" ,
+      stadium: "stadium" 
     };
   },
+    methods: {
+    async getLeagueDetails(){
+      try {
+        const response = await this.axios.get(
+          "http://localhost:3000/league/getDetails",
+        );
+        // this.details = response;
+        this.leagueName = response.data.league_name
+        this.season = response.data.current_season_name
+        this.stage = response.data.current_stage_name
+        this.hostTeam = response.data.nextgame.hometeam
+        this.guestTeam = response.data.nextgame.awayteam
+        this.date = response.data.nextgame.date
+        this.hour = response.data.nextgame.time
+        this.stadium = response.data.nextgame.stadium
+      } catch (error) {
+        console.log("error in update games")
+        console.log(error);
+      }
+    }
+  }, 
+  mounted(){
+    console.log("League details mounted");
+    this.getLeagueDetails(); 
+  }
 }
 </script>
 
@@ -33,7 +77,7 @@ export default {
 .league-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
+  height: 218px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
