@@ -1,14 +1,27 @@
 <template>
   <div>
-    <GamePreview
-      v-for="g in games"
-      title="Game Details:"
-      :hostTeam="g.hometeam" 
-      :guestTeam="g.awayteam" 
-      :date="g.date" 
-      :hour="g.time"
-      :stadium="g.stadium"  
-      :key="g.date"></GamePreview>
+    <div v-if="num_of_fav == 3">
+      <GamePreview
+        v-for="g in newsLimited"
+        title="Game Details:"
+        :hostTeam="g.hometeam" 
+        :guestTeam="g.awayteam" 
+        :date="g.date" 
+        :hour="g.time"
+        :stadium="g.stadium"  
+        :key="g.date"></GamePreview>
+    </div>
+    <div v-else>
+        <GamePreview
+        v-for="g in games"
+        title="Game Details:"
+        :hostTeam="g.hometeam" 
+        :guestTeam="g.awayteam" 
+        :date="g.date" 
+        :hour="g.time"
+        :stadium="g.stadium"  
+        :key="g.date"></GamePreview>
+      </div>
   </div>
 </template>
 
@@ -20,6 +33,7 @@ export default {
   components: {
     GamePreview
   }, 
+  props: { num_of_fav: { require: true } },
   data() {
     return {
       games: []
@@ -62,7 +76,12 @@ export default {
   mounted(){
     console.log("favorite games mounted");
     this.updateGames(); 
-  }
+  },
+  computed: {
+    newsLimited() {
+        return this.games.slice(0, 3)
+    }
+}
 };
 </script>
 

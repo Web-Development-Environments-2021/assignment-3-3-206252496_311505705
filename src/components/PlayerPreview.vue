@@ -2,16 +2,17 @@
   <div class="card" style="width: 18rem">
     <div class="card-body">
       <h5 class="card-title">{{ name }}</h5>
-      <ul class="card-text">
-      <li> full name: {{ name }}</li>
-      <li> team name: {{ team_name }}</li>
-      <li> position: {{ position }}</li>
-      </ul>
+      <p class="card-text">
+      <br/>
+      Team Name: {{ team_name }}
+      <br/>
+      Position: {{ position }}
+      </p>
     </div>
     <img
       :src= "image"
       class="card-img-bottom"
-      style="height: 200px; width: auto;text-align: center"
+      style="height: 100px; width: auto; text-align: center"
     />
   </div>
 </template>
@@ -67,8 +68,8 @@ export default {
 
 <style>
 .card {
-  width: 18rem;
+  width: 12rem;
   display: inline-block;
-  margin: 10px;
+  margin: 6px;
 }
 </style>

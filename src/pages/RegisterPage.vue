@@ -2,12 +2,12 @@
   <div class="container">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
+      <!-- username -->
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
         label="Username:"
-        label-for="username"
-      >
+        label-for="username">
         <b-form-input
           id="username"
           v-model="$v.form.username.$model"
@@ -25,12 +25,53 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+            <!-- First name -->
+      <b-form-group
+        id="input-group-firstname"
+        label-cols-sm="3"
+        label="First name:"
+        label-for="firstname">
+        <b-form-input
+          id="firstname"
+          v-model="$v.form.firstname.$model"
+          type="text"
+          :state="validateState('firstname')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstname.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.username.alpha">
+          First name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <!-- Last name -->
+        <b-form-group
+        id="input-group-lastname"
+        label-cols-sm="3"
+        label="lastname:"
+        label-for="lastname">
+        <b-form-input
+          id="lastname"
+          v-model="$v.form.lastname.$model"
+          type="text"
+          :state="validateState('lastname')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastname.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.username.alpha">
+          lastname alpha
+        </b-form-invalid-feedback>
+          </b-form-group>
+
+      <!-- Country -->
       <b-form-group
         id="input-group-country"
         label-cols-sm="3"
         label="Country:"
-        label-for="country"
-      >
+        label-for="country">
+
         <b-form-select
           id="country"
           v-model="$v.form.country.$model"
@@ -42,6 +83,46 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+      <!-- Email -->
+            <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="email:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          Email is not valid
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <!-- profilePic -->
+            <b-form-group
+        id="input-group-profilePic"
+        label-cols-sm="3"
+        label="profilePic:"
+        label-for="profilePic"
+      >
+        <b-form-input
+          id="profilePic"
+          v-model="$v.form.profilePic.$model"
+          type="text"
+          :state="validateState('profilePic')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          profilePic is required
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <!-- Password -->
       <b-form-group
         id="input-group-Password"
         label-cols-sm="3"
@@ -56,6 +137,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.password.required">
           Password is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.password.valid">
+          password must contain at least one number and one special character
         </b-form-invalid-feedback>
         <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
           Your password should be <strong>strong</strong>. <br />
@@ -136,12 +220,13 @@ export default {
     return {
       form: {
         username: "",
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         country: null,
+        email: "",
+        profilePic: "",
         password: "",
         confirmedPassword: "",
-        email: "",
         submitError: undefined
       },
       countries: [{ value: null, text: "", disabled: true }],
@@ -156,12 +241,32 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
       },
+      firstname: {
+        required,
+        alpha
+      },
+      lastname: {
+        required,
+        alpha
+      },
       country: {
+        required
+      },
+      email: {
+        required,
+        email
+      },
+      profilePic: {
         required
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        valid: function(value) {
+          const containsNumber = /[0-9]/.test(value)
+          const containsSpecial = /[#?!@$%^&*-]/.test(value)
+          return containsNumber && containsSpecial
+    }
       },
       confirmedPassword: {
         required,
@@ -182,12 +287,18 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "http://localhost:3000/Register",
           {
             username: this.form.username,
-            password: this.form.password
+            firstname: this.form.firstname,
+            lastname: this.form.lastname,
+            country: this.form.country,
+            password: this.form.password,
+            email: this.form.email,
+            profilePic: this.form.profilePic
           }
         );
+        // console.log(response)
         this.$router.push("/login");
         // console.log(response);
       } catch (err) {
@@ -210,9 +321,10 @@ export default {
         firstName: "",
         lastName: "",
         country: null,
+        email: "",
+        profilePic: "",
         password: "",
-        confirmedPassword: "",
-        email: ""
+        confirmedPassword: ""
       };
       this.$nextTick(() => {
         this.$v.$reset();

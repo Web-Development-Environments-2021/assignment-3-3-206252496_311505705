@@ -1,9 +1,15 @@
 <template>
   <div class="container">
     <h1 class="title">Main Page</h1>
-    <LoginPage v-if="!$root.store.username"></LoginPage>
-    <FavoriteGames v-else></FavoriteGames>
-    <LeagueInfo></LeagueInfo>
+    <b-container class="bv-example-row bv-example-row-flex-cols">
+      <LoginPage v-if="!$root.store.username"></LoginPage>
+      <div v-else>
+        <b-row>
+          <b-col align-self="baseline"><LeagueInfo></LeagueInfo></b-col>
+          <b-col align-self="stretch"><FavoriteGames :num_of_fav=3></FavoriteGames></b-col>
+        </b-row>
+      </div>  
+    </b-container>
   </div>
 </template>
 
