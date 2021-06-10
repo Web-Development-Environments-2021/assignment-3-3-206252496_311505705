@@ -1,19 +1,34 @@
 <template>
   <div class="card" style="width: 18rem">
     <div class="card-body">
-      <h5 class="card-title">{{ name }}</h5>
+      <h5 class="card-title" style="text-align: center">{{ name }}</h5>
       <p class="card-text">
       <br/>
       Team Name: {{ team_name }}
       <br/>
       Position: {{ position }}
+      <br/>
+      commonname: {{commonname}},     
+       <br/>
+      nationality: {{nationality}},
+      <br/>
+      birthdate: {{birthdate}},
+      <br/>
+      birthplace: {{birthplace}},
+      <br/>
+      height:{{height}},
+      <br/>
+      weight:{{weight}}
       </p>
     </div>
+        <center>
     <img
       :src= "image"
       class="card-img-bottom"
       style="height: 100px; width: auto; text-align: center"
     />
+        </center>
+
   </div>
 </template>
 
@@ -22,14 +37,20 @@
 // import Pokemon from "pokemon-images";
 
 export default {
-  name: "playerPreview",
+  name: "playerInfo",
   props: { player_id: { require: true } },
    data() {
     return {
-          name : "ori",
-          team_name: "mor",
-          image: "http",
-          position : 3
+          name : "",
+          team_name: "",
+          image: "",
+          position : 0,
+          commonname: "",
+          nationality: "",
+          birthdate: "",
+          birthplace: "",
+          height:"",
+          weight:""
     };
    },
   methods: {
@@ -43,7 +64,12 @@ export default {
           this.team_name=response.data.team_name;
           this.position=response.data.position;
           this.image=response.data.image;
-
+          this.commonname=response.data.commonname,
+          this.nationality=response.data.nationality,
+          this.birthdate=response.data.birthdate,
+          this.birthplace=response.data.birthplace,
+          this.height=response.data.height,
+          this.weight=response.data.weight
 
       } catch (error) {
         console.log("error in geting players details")

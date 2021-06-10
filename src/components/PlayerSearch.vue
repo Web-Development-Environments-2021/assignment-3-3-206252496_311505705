@@ -1,0 +1,106 @@
+<template>
+  <div class="card" style="width: 18rem">
+    <div class="card-body">
+      <h5 class="card-title">{{ name }}</h5>
+      <p class="card-text">
+      <br/>
+      Team Name: {{ team_name }}
+      <br/>
+      Position: {{ position }}
+      <br/>
+      </p>
+    </div>
+    <center>
+      <a
+        class="btn btn-primary"
+        href="#/player"
+        v-on:click="onClickButton"
+        >Go to player page</a
+      >
+      <!-- <router-link :to="{name:'player',params:{player_id}}"> Log in here</router-link> -->
+    <img
+      :src= "image"
+      class="card-img-bottom"
+      style="height: 100px; width: auto; text-align: center"
+    />
+    </center>
+
+  </div>
+</template>
+
+
+<script>
+// import Pokemon from "pokemon-images";
+
+export default {
+  name: "PlayerSearch",
+props: {
+      name: {
+        type: String,
+        required: true
+      },
+      team_name: {
+        type: String,
+        required: true
+      },
+      image: {
+        type: String,
+        required: true
+      },
+      position: {
+        type: Number,
+        required: true
+      },
+      player_id: {
+        type: Number,
+        required: true
+      },
+},
+     data() {
+    return {
+    };
+   },
+  methods: {
+    onClickButton (event) {
+      console.log("***********************")
+      this.$emit('clicked', this.player_id)
+    },
+        async getPlayerDetails(){
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/players/playerDetailsById/${this.player_id}`,
+        );
+        // this.details = response;
+          this.name=response.data.name;
+          this.team_name=response.data.team_name;
+          this.position=response.data.position;
+          this.image=response.data.image;
+
+      } catch (error) {
+        console.log("error in geting players details")
+        console.log(error);
+      }
+    }
+  }, 
+  mounted(){
+    console.log("Player details mounted");
+    // this.getPlayerDetails(); 
+  }
+    // get_image(pok_name) {
+    //   try {
+    //     return Pokemon.getSprite(pok_name);
+    //   } catch (err) {
+    //     return "https://assets.pokemon.com/assets/cms2/img/pokedex/full/158.png";
+    //   }
+    // },
+  // },
+};
+</script>
+
+<style>
+.card {
+  width: 12rem;
+  display: inline-block;
+  margin: 6px;
+}
+</style>

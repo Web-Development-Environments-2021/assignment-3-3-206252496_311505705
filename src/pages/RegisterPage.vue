@@ -25,7 +25,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
-            <!-- First name -->
+      <!-- First name -->
       <b-form-group
         id="input-group-firstname"
         label-cols-sm="3"

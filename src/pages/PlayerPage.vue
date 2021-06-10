@@ -1,16 +1,37 @@
 <template>
   <div class="container">
     <h1 class="title">Player Page</h1>
-    <playerPreview :player_id=678></playerPreview>
+    <PlayerInfo :player_id=player_id2></PlayerInfo>
+    <PlayerSearch @clicked="onClickChild"></PlayerSearch>
   </div>
+
 </template>
 
 <script>
-import playerPreview from "../components/PlayerPreview";
+import PlayerSearch from "../components/PlayerSearch";
+import PlayerInfo from "../components/PlayerInfo";
 export default {
   name: "Player",
   components: {
-    playerPreview
+    PlayerInfo:PlayerInfo,
+    PlayerSearch:PlayerSearch
+  },
+  props:['player_id'],
+    data() {
+    return {
+      player_id2:0
+    }},
+  methods: {
+    onClickChild (player_id) {
+      console.log("**")
+      this.player_id=player_id;
+    }
+  },
+  mounted(){
+    if(this.player_id){
+      console.log("im here")
+      this.player_id2 = this.player_id
+    }
   }
 };
 </script>

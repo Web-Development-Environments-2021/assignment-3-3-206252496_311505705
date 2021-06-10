@@ -1,25 +1,118 @@
 <template>
-  <div>
+<div>
     <h1 class="title">Search Page</h1>
-    <b-input-group prepend="Search Query:" id="search-input">
-      <b-form-input v-model="searchQuery"></b-form-input>
-      <b-input-group-append>
-        <b-button variant="success">Search</b-button>
-      </b-input-group-append>
-    </b-input-group>
+    <br/>
+      <center>
+            <b-button @click="isTeam=!isTeam" style="background: #2f5d62" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <b-button  @click="isPlayer=!isPlayer" style="background: #2f5d62" >Players</b-button>
+        <!-- <p-radio class="p-switch" name="switch1" color="success">Summer</p-radio>
+
+        <p-radio class="p-switch p-fill" name="switch1" color="success">Winter</p-radio>
+
+        <p-radio class="p-switch p-slim" name="switch1" color="success">Fall</p-radio> -->
+      </center>
+    <br/>
+      <center>
+        <b-input-group prepend="Search Query:" id="search-input" style="text-align: center">
+          <b-form-input v-model="searchQuery"></b-form-input>
+          <b-input-group-append>
+            <b-button variant= "success" @click="Search">Search</b-button>
+          </b-input-group-append>
+        </b-input-group>
+      </center>
+
+
       <br/>
       Your search Query: {{ searchQuery }}
+      <br/>
+      <div v-if="isPlayer">
+        <PlayerSearch 
+        v-for="(g,index) in playersLimited"
+        :name="g.name" 
+        :team_name="g.team_name" 
+        :image="g.image"
+        :position="g.position"
+        :player_id="g.player_id"    
+        :key="index"></PlayerSearch>
+      </div>
+      <div v-if="isTeam">
+        <TeamSearch 
+        v-for="(g,index) in teamsLimited"
+        :team_name="g.team_name" 
+        :team_logo="g.team_logo" 
+        :team_id="g.team_id"    
+        :key="index"></TeamSearch>
+      </div>
   </div>
 </template>
 
 
-<script>
+<script>  
+  import TeamSearch from "../components/TeamSearch";
+  import PlayerSearch from "../components/PlayerSearch";
 export default {
+  name: "Search",
+  components: {
+    PlayerSearch,
+    TeamSearch
+  },
  data() {
     return {
-      searchQuery:""
+      searchQuery:"",
+      players:[],
+      teams:[],
+      isPlayer: false,
+      isTeam: false
     };
   },
+  methods: {
+    async Search() {
+      if (this.isPlayer){
+        this.Players()
+      }
+      else{
+        this.Teams()
+      }
+    },
+    async Teams() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/teams/searchTeam/${this.searchQuery}`,
+        );
+        const teams = response.data;
+        this.teams = [];
+        this.teams.push(...teams);
+      } catch (error) {
+        console.log("error in update teams in search")
+        console.log(error);
+      }
+    },
+    async Players() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/players/playerDetailsByName/${this.searchQuery}`,
+        );
+          const players = response.data;
+          this.players = [];
+          this.players.push(...players);
+          // this.name=response.data.name;
+          // this.team_name=response.data.team_name;
+          // this.position=response.data.position;
+          // this.image=response.data.image;
+      } catch (error) {
+        console.log("error in update players search")
+        console.log(error);
+      }
+    }
+  },
+    computed: {
+    playersLimited() {
+        return this.players.slice(0, 3)
+    },
+    teamsLimited() {
+        return this.teams.slice(0, 3)
+    }
+}
 }
 </script>
 
