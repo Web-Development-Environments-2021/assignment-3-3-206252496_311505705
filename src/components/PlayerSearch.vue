@@ -11,13 +11,7 @@
       </p>
     </div>
     <center>
-      <a
-        class="btn btn-primary"
-        href="#/player"
-        v-on:click="onClickButton"
-        >Go to player page</a
-      >
-      <!-- <router-link :to="{name:'player',params:{player_id}}"> Log in here</router-link> -->
+      <router-link :to="{name:`players`, params:{player_id:player_id}}">Go to player's page</router-link>
     <img
       :src= "image"
       class="card-img-bottom"
@@ -60,6 +54,11 @@ props: {
     return {
     };
    },
+  // watch:{
+  //       player_id: function (val) {
+  //           this.PlayerPage()
+  //       }
+  //   },
   methods: {
     onClickButton (event) {
       console.log("***********************")

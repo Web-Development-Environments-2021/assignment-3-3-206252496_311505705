@@ -1,0 +1,99 @@
+<template>
+  <div class="game-preview">
+    <div :title="title" class="game-title">
+      <b>{{title}}</b> 
+    </div>
+    <ul class="game-content">
+      <li> host: {{ hostTeam }}</li>
+      <li> guest: {{ guestTeam }}</li>
+      <li> date: {{ date }}</li>
+      <li> time: {{ hour }}</li>
+      <li> stadium: {{ stadium }}</li>
+      <li> result: {{ result }}</li>
+        <EventPreview 
+        v-for="(g,index) in events"
+        :date="g.date" 
+        :time="g.time" 
+        :gamemin="g.gamemin"
+        :event="g.event"
+        :count="index" 
+        :key="g.gamemin"></EventPreview>
+    </ul>
+  </div>
+</template>
+
+
+<script>
+  import EventPreview from "../components/EventPreview";
+export default {
+  name: "PastGamePreview",
+  components: {
+    EventPreview
+  },
+  props: {
+      title: {
+        type: String,
+        required: true
+      },
+      hostTeam: {
+        type: String,
+        required: true
+      },
+      guestTeam: {
+        type: String,
+        required: true
+      },
+      date: {
+        type: String,
+        required: true
+      },
+      hour: {
+        type: String,
+        required: true
+      },
+      stadium: {
+        type: String,
+        required: true
+      },
+      result: {
+        type: String,
+        required: true
+      },
+      events: {
+        type: Array,
+        required: true
+      }
+  }, 
+  mounted(){
+    console.log("Past game preview mounted")
+  } 
+};
+</script>
+
+<style>
+.game-preview {
+  display: inline-block;
+  width: 250px;
+  height: 200px;
+  position: relative;
+  margin: 10px 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 5px;
+  border-color:cadetblue;
+}
+
+.game-preview .game-title {
+  text-align: center;
+  text-transform: uppercase;
+  color:  rgb(111, 197, 157);
+}
+
+.game-preview .game-content {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+
+</style>

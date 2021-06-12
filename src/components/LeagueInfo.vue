@@ -15,24 +15,25 @@
       <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
     <br/>
-    <GamePreview 
+    <FutureGamePreview 
       title= "Next game details:"
     :hostTeam= "hostTeam"
     :guestTeam= "guestTeam" 
     :date= "date" 
     :hour= "hour" 
     :stadium= "stadium" 
-    :key="555"></GamePreview>
+    :match_id= "match_id"
+    :key="555"></FutureGamePreview>
   </div>
 </template>
 
 
 <script>
-import GamePreview from "./GamePreview.vue";
+import FutureGamePreview from "./FutureGamePreview.vue";
 export default {
   name: "LeagueInfo",
   components: {
-    GamePreview
+    FutureGamePreview
   },  data() {
     return {
       leagueName: "superliga", 
@@ -42,7 +43,8 @@ export default {
       guestTeam: "guestTeam" ,
       date: "date" ,
       hour: "hour" ,
-      stadium: "stadium" 
+      stadium: "stadium" ,
+      match_id: "match_id"
     };
   },
     methods: {
@@ -60,6 +62,7 @@ export default {
         this.date = response.data.nextgame.date
         this.hour = response.data.nextgame.time
         this.stadium = response.data.nextgame.stadium
+        this.match_id = response.data.nextgame.match_id
       } catch (error) {
         console.log("error in update games")
         console.log(error);

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="num_of_fav == 3">
-      <GamePreview
+      <FutureGamePreview
         v-for="g in newsLimited"
         title="Game Details:"
         :hostTeam="g.hometeam" 
@@ -9,53 +9,36 @@
         :date="g.date" 
         :hour="g.time"
         :stadium="g.stadium"  
-        :key="g.date"></GamePreview>
+        :match_id="0"
+        :key="g.date"></FutureGamePreview>
     </div>
     <div v-else>
-        <GamePreview
+        <FutureGamePreview
         v-for="g in games"
         title="Game Details:"
         :hostTeam="g.hometeam" 
         :guestTeam="g.awayteam" 
         :date="g.date" 
         :hour="g.time"
-        :stadium="g.stadium"  
-        :key="g.date"></GamePreview>
+        :stadium="g.stadium" 
+        :match_id="0" 
+        :key="g.date"></FutureGamePreview>
       </div>
   </div>
 </template>
 
 
 <script>
-import GamePreview from "./GamePreview.vue";
+import FutureGamePreview from "./FutureGamePreview.vue";
 export default {
   name: "FavoriteGames",
   components: {
-    GamePreview
+    FutureGamePreview
   }, 
   props: { num_of_fav: { require: true } },
   data() {
     return {
       games: []
-      // games: [
-      //   {
-      //     title: "Game Details:",
-      //     hostTeam: "Maccabi Tel-Aviv",
-      //     guestTeam: "Hapoel Beer-Sheva",
-      //     date: "27/5/21",
-      //     hour: "20:00",
-      //     stadium: "Parken"
-      //   },
-      //   {
-      //     title: "Game Details:",
-      //     hostTeam: "Hapoel Tel-Aviv",
-      //     guestTeam: "Maccabi Haifa",
-      //     date: "29/5/21",
-      //     hour: "20:00",
-      //     stadium: "Parken"
-
-      //   }
-      // ]
     };
   },
   methods: {

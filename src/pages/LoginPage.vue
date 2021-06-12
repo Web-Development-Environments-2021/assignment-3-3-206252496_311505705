@@ -108,6 +108,7 @@ export default {
         this.$root.store.login(this.form.username);
         this.$router.push("/").catch(err=>{});
       } catch (err) {
+        this.$root.toast("Login", "Username or password are incorrect","danger");
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }

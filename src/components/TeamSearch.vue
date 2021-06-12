@@ -4,12 +4,9 @@
         <h5 class="card-title" style="text-align: center">{{ team_name }}</h5>
     </div>
     <center>
-    <a
-        target="_blank"
-        :href="`https://www.pokemon.com/us/pokedex/`"
-        class="btn btn-primary"
-        >Go to teams page</a
-      >
+
+    <router-link :to="{name:`teams`, params:{team_id:team_id}}">Go to team's page</router-link>
+
     <img
       :src= "team_logo"
       class="card-img-bottom"
