@@ -12,7 +12,6 @@
         <br/>
         Stage: {{ stage }}
       </b-card-text>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
     <br/>
     <FutureGamePreview 
@@ -22,7 +21,7 @@
     :date= "date" 
     :hour= "hour" 
     :stadium= "stadium" 
-    :match_id= "match_id"
+    :match_id= 0
     :key="555"></FutureGamePreview>
   </div>
 </template>

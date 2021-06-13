@@ -2,7 +2,12 @@
   <div class="container">
     <h1 class="title">Main Page</h1>
     <b-container class="bv-example-row bv-example-row-flex-cols">
-      <LoginPage v-if="!$root.store.username"></LoginPage>
+      <div v-if="!$root.store.username">
+        <b-row>
+          <b-col align-self="baseline"><LeagueInfo></LeagueInfo></b-col>
+          <b-col align-self="stretch"><LoginPage ></LoginPage></b-col>
+        </b-row>
+      </div>
       <div v-else>
         <b-row>
           <b-col align-self="baseline"><LeagueInfo></LeagueInfo></b-col>

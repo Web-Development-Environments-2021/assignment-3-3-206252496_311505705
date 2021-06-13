@@ -11,8 +11,9 @@
         :stadium="g.stadium"  
         :match_id="0"
         :key="g.date"></FutureGamePreview>
+        <div v-if="newsLimited.length==0" style="transition-delay: 5s">No games in favorites</div>
     </div>
-    <div v-else>
+      <div v-else>
         <FutureGamePreview
         v-for="g in games"
         title="Game Details:"
@@ -23,6 +24,8 @@
         :stadium="g.stadium" 
         :match_id="0" 
         :key="g.date"></FutureGamePreview>
+        <div v-if="games.length==0" style="transition-delay: 5s" >No games in favorites</div>
+
       </div>
   </div>
 </template>

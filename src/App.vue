@@ -14,7 +14,19 @@
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav class="ml-auto" v-else>
+        <!-- // permission -->
+        <b-navbar-nav class="ml-auto" v-else-if="findIfRepresentative() && isRepresentative==true">
+        <b-nav-item-dropdown right>
+          <template #button-content>
+            User
+          </template>
+          <b-dropdown-item href="#/league">Manage League</b-dropdown-item>
+          <b-dropdown-item href="#/Favorites">Favorites</b-dropdown-item>
+          <b-dropdown-item href="#" @click="Logout">Log Out</b-dropdown-item>
+        </b-nav-item-dropdown>
+        </b-navbar-nav>
+        <!-- // no permission -->
+        <b-navbar-nav class="ml-auto" v-else-if="findIfRepresentative() && isRepresentative==false">
         <b-nav-item-dropdown right>
           <template #button-content>
             User
@@ -32,6 +44,11 @@
 <script>
 export default {
   name: "App",
+   data() {
+    return {
+      isRepresentative: false
+    };
+  },
   methods: {
     Logout() {
       this.$root.store.logout();
@@ -40,8 +57,28 @@ export default {
       this.$router.push("/").catch(() => {
         this.$forceUpdate();
       });
+    },
+    async findIfRepresentative() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/league/isRepresentative`,
+        );        
+        this.isRepresentative = response.data;
+      } catch (error) {
+        console.log("error in isRepresentative")
+        this.isRepresentative = false;
+        console.log(error);
+      }
     }
-  }
+  },
+//     computed: {
+//      PlayIsRepresentative() {
+//       return this.findIfRepresentative()
+//     }
+// },
+  //   mounted(){
+  //   this.findIfRepresentative(); 
+  // },
 };
 </script>
 

@@ -27,11 +27,6 @@ const routes = [
     name: "games",
     component: () => import("./pages/GamesPage"),
   },
-  // {
-  //   path: "/player/",
-  //   name: "player",
-  //   component: () => import("./pages/PlayerPage"),
-  // },
   {
     path: "/players/:player_id",
     name: "players",
@@ -44,11 +39,11 @@ const routes = [
     props: true,
     component: () => import("./pages/TeamPage"),
   },
-  // {
-  //   path: "/team",
-  //   name: "team",
-  //   component: () => import("./pages/TeamPage"),
-  // },
+  {
+    path: "/league",
+    name: "league",
+    component: () => import("./pages/LeagueManagePage"),
+  },
   {
     path: "/Favorites",
     name: "Favorites",

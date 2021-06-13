@@ -10,12 +10,14 @@
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
     </ul>
+    <div v-if="match_id != 0 && $root.store.username">
     <a
         target="_blank"
         @click="addToFavorite"
         class="btn btn-primary"
         >Add to fatorites</a
       >
+    </div>
   </div>
 </template>
 
@@ -53,6 +55,12 @@ export default {
         required: true
       }
   }, 
+  data() {
+    return {
+      hostTeamID: "hostTeam",
+      guestTeamID: "guestTeam" 
+    };
+  },
   methods: {
     async addToFavorite() {
       try {
@@ -62,16 +70,46 @@ export default {
             match_id: this.match_id,
           }
         );
-        this.$root.toast("Favorites", "Game was added successfully", "success");
+        this.$root.toast("Favorites", "The game was added successfully", "success");
 
       } catch (error) {
+        this.$root.toast("Favorites", "The game is already in your favorites","danger");
         console.log("error in update games")
+        console.log(error);
+      }
+    },
+    async host_id(team_name) {
+      try {
+        let name = team_name;
+        console.log(name)
+        const response = await this.axios.get(
+          `http://localhost:3000/teams/searchTeam/${name}`,
+        );
+        this.hostTeamID = response.data.team_id;
+      } catch (error) {
+        console.log("error in update teams in search")
+        console.log(error);
+      }
+    },
+    async guest_id(team_name) {
+      try {
+        let name = team_name;
+        console.log(name)
+        const response = await this.axios.get(
+          `http://localhost:3000/teams/searchTeam/${name}`,
+        );
+        this.guestTeamID = response.data.team_id;
+      } catch (error) {
+        console.log("error in update teams in search")
         console.log(error);
       }
     },
   },
   mounted(){
     console.log("Future game preview mounted")
+    // this.host_id(this.hostTeam);
+    // this.guest_id(this.guestTeam)
+
   } 
 };
 </script>

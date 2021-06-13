@@ -25,6 +25,7 @@
       <br/>
       Your search Query: {{ searchQuery }}
       <br/>
+      
       <div v-if="isPlayer">
         <PlayerSearch 
         v-for="(g,index) in playersLimited"
@@ -37,24 +38,36 @@
       </div>
       <div v-if="isTeam">
         <TeamSearch 
-        v-for="(g,index) in teamsLimited"
+        v-for="g in teamsLimited"
         :team_name="g.team_name" 
         :team_logo="g.team_logo" 
         :team_id="g.team_id"    
-        :key="index"></TeamSearch>
+        :key="g.team_name"></TeamSearch>
+      </div>
+            <div v-if="players.length != 0">
+            <mdb-datatable 
+            :data="players_data"
+            striped
+            bordered
+            fixed
+            />
+      <br/>
+      <br/>
       </div>
   </div>
 </template>
 
 
 <script>  
+  import { mdbDatatable } from 'mdbvue';
   import TeamSearch from "../components/TeamSearch";
   import PlayerSearch from "../components/PlayerSearch";
 export default {
   name: "Search",
   components: {
     PlayerSearch,
-    TeamSearch
+    TeamSearch,
+    mdbDatatable
   },
  data() {
     return {
@@ -62,7 +75,37 @@ export default {
       players:[],
       teams:[],
       isPlayer: false,
-      isTeam: false
+      isTeam: false,
+      players_data: {
+      columns: [
+            {
+              label: 'name ⇅',
+              field: 'name',
+              sort: 'asc'
+            },
+            {
+              label: 'team_name ⇅',
+              field: 'team_name',
+              sort: 'asc'
+            },
+            {
+              label: 'position ⇅',
+              field: 'position',
+              sort: 'asc'
+            }
+          ],
+          rows: []
+      },
+      teams_data: {
+      columns: [
+            {
+              label: 'team_name ⇅',
+              field: 'team_name',
+              sort: 'asc'
+            },
+          ],
+          rows: []
+      }
     };
   },
   methods: {
@@ -95,10 +138,15 @@ export default {
           const players = response.data;
           this.players = [];
           this.players.push(...players);
-          // this.name=response.data.name;
-          // this.team_name=response.data.team_name;
-          // this.position=response.data.position;
-          // this.image=response.data.image;
+          this.players_data.rows = [];
+          response.data.forEach(element => {
+            const rows = {
+            name: element.name,
+            team_name: element.team_name,
+            position: element.position,
+            }
+            this.players_data.rows.push(rows);
+          }); 
       } catch (error) {
         console.log("error in update players search")
         console.log(error);
@@ -107,10 +155,10 @@ export default {
   },
     computed: {
     playersLimited() {
-        return this.players.slice(0, 3)
+        return this.players.slice(0, 20)
     },
     teamsLimited() {
-        return this.teams.slice(0, 3)
+        return this.teams.slice(0, 20)
     }
 }
 }

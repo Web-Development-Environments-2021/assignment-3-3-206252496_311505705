@@ -302,6 +302,7 @@ export default {
         this.$router.push("/login");
         // console.log(response);
       } catch (err) {
+        this.$root.toast("Register", "Username is already taken","danger");
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
@@ -310,6 +311,7 @@ export default {
       // console.log("register method called");
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
+        this.$root.toast("Register", "One or more of the fields are incorrect","danger");
         return;
       }
       // console.log("register method go");
