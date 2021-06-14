@@ -3,7 +3,7 @@
     <div v-if="num_of_fav == 3">
       <FutureGamePreview
         v-for="g in newsLimited"
-        title="Game Details:"
+        title="Match Details:"
         :hostTeam="g.hometeam" 
         :guestTeam="g.awayteam" 
         :date="g.date" 
@@ -16,7 +16,7 @@
       <div v-else>
         <FutureGamePreview
         v-for="g in games"
-        title="Game Details:"
+        title="Match Details:"
         :hostTeam="g.hometeam" 
         :guestTeam="g.awayteam" 
         :date="g.date" 

@@ -8,7 +8,15 @@
       style="height: 100px; width: auto; text-align: center"
     />
   </center>
+  <center>
+    <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPlayer" style="background-color: #2f5d62" >Show Players</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+  </center>
+    <hr>
     <br/>
+        <div v-if="showplayer">
       <div v-if="players.length != 0">
         <PlayerSearch 
         v-for="(g,index) in playersLimited"
@@ -19,11 +27,12 @@
         :player_id="g.player_id"    
         :key="index"></PlayerSearch>
       </div>
-      <br/>
+        </div>
+      <div v-if="showpast">
       <div v-if="past.length != 0">
       <PastGamePreview
         v-for="(g,index) in past"
-        title="Past Game Details:"
+        title="Match Details:"
         :hostTeam="g.hometeam" 
         :guestTeam="g.awayteam" 
         :date="g.date" 
@@ -33,12 +42,12 @@
         :events="g.events"  
         :key="index"></PastGamePreview>
       </div>
-      <br/>
-      <br/>
+      </div>
+      <div v-if="showfuture">
       <div v-if="future.length != 0">
       <FutureGamePreview
         v-for="(g,index) in future"
-        title="Future Game Details:"
+        title="Match Details:"
         :hostTeam="g.hometeam" 
         :guestTeam="g.awayteam" 
         :date="g.date" 
@@ -46,6 +55,7 @@
         :stadium="g.stadium"  
         :match_id="0"
         :key="index"></FutureGamePreview>
+      </div>
       </div>
   </div>
 </template>
@@ -77,10 +87,31 @@ export default {
       players:[],
       past:[],
       future:[],
-      team_logo: ""
+      team_logo: "",
+      showfuture: false,
+      showpast: false,
+      showplayer: false
     };
   },
   methods: {
+        showFuture(){
+      this.showfuture = true;
+      this.showpast = false;
+      this.showplayer = false;
+
+    },
+    showPast(){
+      this.showfuture = false;
+      this.showpast = true;
+      this.showplayer = false;
+
+    },
+    showPlayer(){
+      this.showfuture = false;
+      this.showpast = false;
+      this.showplayer = true;
+
+    },
     async teamPage() {
       try {
         const response = await this.axios.get(

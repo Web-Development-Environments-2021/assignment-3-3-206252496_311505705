@@ -19,7 +19,7 @@
     <br/>
 
     <FutureGamePreview 
-      title= "Next game details:"
+      title= "Next Match Details:"
     :hostTeam= "hostTeam"
     :guestTeam= "guestTeam" 
     :date= "date" 

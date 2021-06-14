@@ -11,7 +11,7 @@
       <div v-else>
         <b-row>
           <b-col align-self="baseline"><LeagueInfo></LeagueInfo></b-col>
-          <b-col align-self="stretch"><FavoriteGames :num_of_fav=3></FavoriteGames></b-col>
+          <b-col align-self="stretch"><h3 class="subtitle">My Favorites:</h3><FavoriteGames :num_of_fav=3></FavoriteGames></b-col>
         </b-row>
       </div>  
     </b-container>

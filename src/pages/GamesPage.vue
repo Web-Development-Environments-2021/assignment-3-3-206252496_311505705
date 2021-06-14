@@ -5,13 +5,15 @@
     <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     </center>
-
-    <br/>
+    <hr>
     <div v-if="showfuture">
       <div v-if="future.length != 0">
-      <FutureGamePreview
+      <center>
+      <h3 class="title">Future Mathces</h3>
+      </center>
+      <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
         v-for="(g,index) in future"
-        title="Future Game Details:"
+        title="Match Details:"
         :hostTeam="g.hometeam" 
         :guestTeam="g.awayteam" 
         :date="g.date" 
@@ -21,13 +23,14 @@
         :key="index"></FutureGamePreview>
       </div>
     </div>
-      <br/>
-      <br/>
       <div v-if="showpast">
         <div v-if="past.length != 0">
+        <center>
+        <h3 class="title">Past Mathces</h3>
+        </center>
         <PastGamePreview
           v-for="(g,index) in past"
-          title="Past Game Details:"
+          title="Match Details:"
           :hostTeam="g.hometeam" 
           :guestTeam="g.awayteam" 
           :date="g.date" 

@@ -1,13 +1,13 @@
 <template>
-  <div class="game-preview">
+  <!-- <div class="game-preview">
     <div :title="title" class="game-title">
       <b>{{title}}</b> 
     </div>
     <ul class="game-content">
       <li> host team: <router-link  :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
       <li> guest team: <router-link  :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
-      <!-- <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
-      <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> -->
+      <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
+      <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a>
       <li> date: {{ date }}</li>
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
@@ -20,6 +20,35 @@
         >Add to fatorites</a
       >
     </div>
+  </div> -->
+  <div>
+  <b-card style="width: 300px; display: inline-block">
+    <b-card-body>
+      <b-card-title>{{title}}</b-card-title>
+      <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
+      <b-card-text>
+      <li> host team: <router-link  :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link  :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <!-- <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
+      <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> -->
+      <li> date: {{ date }}</li>
+      <li> time: {{ hour }}</li>
+      <li> stadium: {{ stadium }}</li>
+      </b-card-text>
+    </b-card-body>
+
+      <center>
+        <div v-if="match_id != 0 && $root.store.username">
+            <b-card-footer>
+          <a  target="_blank"
+              @click="addToFavorite"
+              class="btn btn-primary"
+              >Add to fatorites</a>
+            </b-card-footer>
+
+        </div>
+      </center>
+  </b-card>
   </div>
 </template>
 
@@ -59,8 +88,8 @@ export default {
   }, 
   data() {
     return {
-      hostTeamID: "Midtjylland",
-      guestTeamID: "Midtjylland" 
+      hostTeamID: 0,
+      guestTeamID: 0 
     };
   },
   methods: {

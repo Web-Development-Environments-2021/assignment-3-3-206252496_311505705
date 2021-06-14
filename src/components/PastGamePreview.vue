@@ -1,5 +1,5 @@
 <template>
-  <div class="game-preview">
+  <!-- <div class="game-preview">
     <div :title="title" class="game-title">
       <b>{{title}}</b> 
     </div>
@@ -21,9 +21,39 @@
         :count="index" 
         :key="g.gamemin"></EventPreview>
         </div>
-
     </ul>
-  </div>
+  </div> -->
+  
+<div>
+  <b-card style="max-width: 300px;display: inline">
+    <b-card-body>
+      <b-card-title>{{title}}</b-card-title>
+      <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
+      <b-card-text>
+      <li> host team: <router-link :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <li> date: {{ date }}</li>
+      <li> time: {{ hour }}</li>
+      <li> stadium: {{ stadium }}</li>
+      <li> result: {{ result }}</li>
+      </b-card-text>
+    </b-card-body>
+
+    <b-list-group flush>
+    <b-list-group-item>
+        <EventPreview 
+        v-for="(g,index) in events"
+        :date="g.date" 
+        :time="g.time" 
+        :gamemin="g.gamemin"
+        :event="g.event"
+        :count="index" 
+        :key="g.gamemin"></EventPreview></b-list-group-item>
+    </b-list-group>
+  </b-card>
+  <hr>
+
+</div>
 </template>
 
 

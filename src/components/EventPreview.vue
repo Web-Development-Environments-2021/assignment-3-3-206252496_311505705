@@ -1,7 +1,7 @@
 <template>
   <div class="game-preview">
     <div class="game-title">
-      <b>Event {{count}}:</b> 
+      <b>Event {{isCount}}:</b> 
     </div>
     <ul class="game-content">
       <li> date: {{ date }}</li>
@@ -38,11 +38,11 @@ export default {
         required: true
       }
   }, 
-  //   data() {
-  //   return {
-  //     count: 0
-  //   };
-  // },
+    data() {
+    return {
+      isCount: this.count+1
+    };
+  },
   mounted(){
     console.log("Event preview mounted")
   } 
