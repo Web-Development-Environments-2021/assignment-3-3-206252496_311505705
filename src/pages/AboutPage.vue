@@ -107,7 +107,15 @@ export default {
       return {
         show: false
       }
-    }
+    },
+    // computed:{
+    //   REFRESH(){
+    //   return this.$router.go(this.$router.currentRoute)
+    //   }
+    // },
+    // mounted(){
+    //   this.$router.go()
+    // }
 };
 </script>
 

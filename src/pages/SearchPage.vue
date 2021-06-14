@@ -3,25 +3,24 @@
     <h1 class="title">Search Page</h1>
     <br/>
       <center>
-            <b-button @click="isTeam=!isTeam" style="background: #2f5d62" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <b-button  @click="isPlayer=!isPlayer" style="background: #2f5d62" >Players</b-button>
-        <!-- <p-radio class="p-switch" name="switch1" color="success">Summer</p-radio>
-
-        <p-radio class="p-switch p-fill" name="switch1" color="success">Winter</p-radio>
-
-        <p-radio class="p-switch p-slim" name="switch1" color="success">Fall</p-radio> -->
+        <h4 style="padding: 0px 20px;"> What would you like to search:</h4>
+            <b-button @click="showTeams" style="background-color: #2f5d62" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <b-button  @click="showPlayers"  style="background-color: #2f5d62" >Players</b-button>
       </center>
     <br/>
       <center>
         <b-input-group prepend="Search Query:" id="search-input" style="text-align: center">
           <b-form-input v-model="searchQuery"></b-form-input>
           <b-input-group-append>
-            <b-button variant= "success" @click="Search">Search</b-button>
+              <div class="container">
+            <b-button variant= "success" :disabled='isTeam == isPlayer' @click="Search">Search</b-button>
+              </div>
           </b-input-group-append>
         </b-input-group>
       </center>
       <br/>
-      Your search Query: {{ searchQuery }}
+      <hr>
+      <!-- Your search Query: {{ searchQuery }} -->
       <br/>
       <div v-if="isPlayer">
         <PlayerSearch 
@@ -32,17 +31,19 @@
         :position="g.position.toString()"
         :player_id="g.player_id"    
         :key="index"></PlayerSearch>
-        </div>
         <br/>
-        <div v-if="players.length != 0">
+        <div v-if="players.length != 0 && search">
             <mdb-datatable 
             :data="players_data"
             striped
             bordered
             fixed
             />
+        </div>
+      <div v-else-if="search">
+        Your search did not match any Player. 
       </div>
-
+    </div>
       <div v-if="isTeam">
         <TeamSearch 
         v-for="g in teamsLimited"
@@ -50,7 +51,6 @@
         :team_logo="g.team_logo" 
         :team_id="g.team_id"    
         :key="g.team_name"></TeamSearch>
-        </div>
               <br/>
             <div v-if="teams.length != 0">
             <mdb-datatable 
@@ -59,7 +59,13 @@
             bordered
             fixed
             />
+            </div>
+            <div v-else-if="search">
+        Your search did not match any Team. 
       </div>
+      </div>
+
+
   </div>
 </template>
 
@@ -82,6 +88,7 @@ export default {
       teams:[],
       isPlayer: false,
       isTeam: false,
+      search: false,
       players_data: {
       columns: [
             {
@@ -120,6 +127,16 @@ export default {
     };
   },
   methods: {
+    showPlayers(){
+      this.isPlayer = true;
+      this.isTeam = false;
+      this.search = false;
+    },
+    showTeams(){
+      this.isTeam = true;
+      this.isPlayer = false;
+      this.search = false;
+    },
     async Search() {
       if (this.isPlayer){
         this.Players()
@@ -133,6 +150,7 @@ export default {
         const response = await this.axios.get(
           `http://localhost:3000/teams/searchTeam/${this.searchQuery}`,
         );
+        this.search = true;
         const teams = response.data;
         this.teams = [];
         this.teams.push(...teams);
@@ -153,6 +171,7 @@ export default {
         const response = await this.axios.get(
           `http://localhost:3000/players/playerDetailsByName/${this.searchQuery}`,
         );
+          this.search = true;
           const players = response.data;
           this.players = [];
           this.players.push(...players);

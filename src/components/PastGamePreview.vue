@@ -10,6 +10,8 @@
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
       <li> result: {{ result }}</li>
+      <b-button @click="show=!show" style="background-color: #2f5d62" >Show events</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <div v-if="show">
         <EventPreview 
         v-for="(g,index) in events"
         :date="g.date" 
@@ -18,6 +20,8 @@
         :event="g.event"
         :count="index" 
         :key="g.gamemin"></EventPreview>
+        </div>
+
     </ul>
   </div>
 </template>
@@ -67,7 +71,8 @@ export default {
     data() {
     return {
       hostTeamID: "hostTeam",
-      guestTeamID: "guestTeam" 
+      guestTeamID: "guestTeam" ,
+      show: false
     };
   },
   methods:{

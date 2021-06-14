@@ -52,12 +52,13 @@ export default {
 <style>
 .game-preview {
   display: inline-block;
-  width: 250px;
-  height: 200px;
-  position: relative;
+  max-width: 20rem;
+  width: 50px;
+  height: 50px;
+  position:fixed;
   margin: 10px 10px;
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 5px;
   border-width: 5px;
   border-color:cadetblue;
 }

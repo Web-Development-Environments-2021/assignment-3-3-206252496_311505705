@@ -12,7 +12,7 @@
 
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
-          <h5 style="color:white;padding: 8px 6px;">hello guest! </h5>
+          <h5 style="color:white; padding-top: 3%">hello guest! </h5>
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
         </b-navbar-nav>

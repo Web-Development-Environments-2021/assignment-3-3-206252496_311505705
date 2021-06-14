@@ -1,22 +1,13 @@
 <template>
 <div>
     <h1 class="title">Match Page</h1>
+    <center>
+    <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    </center>
+
     <br/>
-      <div v-if="past.length != 0">
-      <PastGamePreview
-        v-for="(g,index) in past"
-        title="Past Game Details:"
-        :hostTeam="g.hometeam" 
-        :guestTeam="g.awayteam" 
-        :date="g.date" 
-        :hour="g.time"
-        :stadium="g.stadium"  
-        :result="g.result"  
-        :events="g.events"  
-        :key="index"></PastGamePreview>
-      </div>
-      <br/>
-      <br/>
+    <div v-if="showfuture">
       <div v-if="future.length != 0">
       <FutureGamePreview
         v-for="(g,index) in future"
@@ -29,6 +20,24 @@
         :match_id="g.match_id"
         :key="index"></FutureGamePreview>
       </div>
+    </div>
+      <br/>
+      <br/>
+      <div v-if="showpast">
+        <div v-if="past.length != 0">
+        <PastGamePreview
+          v-for="(g,index) in past"
+          title="Past Game Details:"
+          :hostTeam="g.hometeam" 
+          :guestTeam="g.awayteam" 
+          :date="g.date" 
+          :hour="g.time"
+          :stadium="g.stadium"  
+          :result="g.result"  
+          :events="g.events"  
+          :key="index"></PastGamePreview>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -40,15 +49,25 @@ export default {
   name: "MatchPage",
   components: {
     PastGamePreview,
-    FutureGamePreview,
+    FutureGamePreview
   },
  data() {
     return {
       past:[],
-      future:[]
+      future:[],
+      showfuture: false,
+      showpast: false
     };
   },
   methods: {
+    showFuture(){
+      this.showfuture = true;
+      this.showpast = false;
+    },
+    showPast(){
+      this.showfuture = false;
+      this.showpast = true;
+    },
     async pastGames() {
       try {
         const response = await this.axios.get(
