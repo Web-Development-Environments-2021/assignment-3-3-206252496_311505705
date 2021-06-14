@@ -17,6 +17,9 @@
         <b-form-invalid-feedback v-if="!$v.form.date.required">
           Date is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.date.valid">
+         Format "12/02/2021" is required 
+        </b-form-invalid-feedback>
       </b-form-group>
 
       <!-- Time -->
@@ -33,6 +36,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.time.required">
           Time is required
+        </b-form-invalid-feedback>
+                <b-form-invalid-feedback v-if="!$v.form.time.valid">
+        Format "18:00" is required 
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -51,6 +57,9 @@
         <b-form-invalid-feedback v-if="!$v.form.hostteam.required">
           Host team name is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.hostteam.alpha">
+           Host team must be letters only
+        </b-form-invalid-feedback>
         </b-form-group>
 
       <!-- Guest team -->
@@ -68,6 +77,9 @@
         <b-form-invalid-feedback v-if="!$v.form.guestteam.required">
           Guest team name is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.guestteam.alpha">
+          Guest team must be letters only
+        </b-form-invalid-feedback>
         </b-form-group>
 
       <!-- Stadium -->
@@ -84,6 +96,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.stadium.required">
           Stadium name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.stadium.alpha">
+          Stadium must be letters only
         </b-form-invalid-feedback>
         </b-form-group>
 
@@ -142,20 +157,30 @@ export default {
     form: {
       date: {
         required,
-        // length: (u) => minLength(3)(u) && maxLength(8)(u),
+          valid: function(value) {
+          const containsNumber = /^(?:(?:31(\/)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.test(value)
+          return containsNumber
+      },
       },
       time: {
         required,
+          valid: function(value) {
+          const containsNumber = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value)
+          return containsNumber
+      },
         
       },
       hostteam: {
-        required
+        required,
+        alpha
       },
       guestteam: {
-        required
+        required,
+        alpha
       },
       stadium: {
-        required
+        required,
+        alpha
       }
     }
   },

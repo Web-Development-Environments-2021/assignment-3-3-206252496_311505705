@@ -4,8 +4,8 @@
       <b>{{title}}</b> 
     </div>
     <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
+      <li> host team: <router-link :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
       <li> date: {{ date }}</li>
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
@@ -64,8 +64,42 @@ export default {
         required: true
       }
   }, 
+    data() {
+    return {
+      hostTeamID: "hostTeam",
+      guestTeamID: "guestTeam" 
+    };
+  },
+  methods:{
+    async host_id(host) {
+      try {
+        let name = host;
+        const response = await this.axios.get(
+          `http://localhost:3000/teams/searchTeam/${name}`,
+        );
+        this.hostTeamID = response.data[0].team_id;
+      } catch (error) {
+        console.log("error in update teams in search")
+        console.log(error);
+      }
+    },
+    async guest_id(guest) {
+      try {
+        let name = guest;
+        const response = await this.axios.get(
+          `http://localhost:3000/teams/searchTeam/${name}`,
+        );
+        this.guestTeamID = response.data[0].team_id;
+      } catch (error) {
+        console.log("error in update teams in search")
+        console.log(error);
+      }
+    }
+  },
   mounted(){
     console.log("Past game preview mounted")
+    this.host_id(this.hostTeam);
+    this.guest_id(this.guestTeam)
   } 
 };
 </script>

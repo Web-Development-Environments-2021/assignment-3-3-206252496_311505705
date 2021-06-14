@@ -1,6 +1,13 @@
 <template>
 <div>
-    <h1 class="title">Team Page</h1>
+  <center>
+    <h1 class="title">{{team_name}}</h1>
+    <img
+      :src= "team_logo"
+      class="card-img-bottom"
+      style="height: 100px; width: auto; text-align: center"
+    />
+  </center>
     <br/>
       <div v-if="players.length != 0">
         <PlayerSearch 
@@ -8,7 +15,7 @@
         :name="g.name" 
         :team_name="g.team_name" 
         :image="g.image"
-        :position="g.position"
+        :position="g.position.toString()"
         :player_id="g.player_id"    
         :key="index"></PlayerSearch>
       </div>
@@ -37,7 +44,7 @@
         :date="g.date" 
         :hour="g.time"
         :stadium="g.stadium"  
-        :match_id="g.match_id"
+        :match_id="0"
         :key="index"></FutureGamePreview>
       </div>
   </div>
@@ -59,6 +66,10 @@ export default {
       team_id: {
         type: Number,
         required: true
+      },
+      team_name: {
+        type: String,
+        required: true
       }
     },
  data() {
@@ -66,10 +77,11 @@ export default {
       players:[],
       past:[],
       future:[],
+      team_logo: ""
     };
   },
   methods: {
-    async teamDetails() {
+    async teamPage() {
       try {
         const response = await this.axios.get(
           `http://localhost:3000/teams/teamFullDetails/${this.team_id}`,
@@ -90,7 +102,19 @@ export default {
         console.log("error in geting team details")
         console.log(error);
       }
-    }
+    },
+    async teamDetails() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/teams/searchTeam/${this.team_name}`,
+        );
+
+        this.team_logo = response.data[0].team_logo;
+      } catch (error) {
+        console.log("error in update teams in search")
+        console.log(error);
+      }
+    },
   },
     computed: {
     playersLimited() {
@@ -100,6 +124,8 @@ export default {
   mounted(){
     console.log("favorite games mounted");
     this.teamDetails(); 
+    this.teamPage();
+
   },
 }
 </script>

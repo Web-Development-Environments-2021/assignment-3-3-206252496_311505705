@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h1 class="title">Games Page</h1>
+    <h1 class="title">Match Page</h1>
     <br/>
       <div v-if="past.length != 0">
       <PastGamePreview
@@ -37,7 +37,7 @@
   import PastGamePreview from "../components/PastGamePreview";
   import FutureGamePreview from "../components/FutureGamePreview";
 export default {
-  name: "GamesPage",
+  name: "MatchPage",
   components: {
     PastGamePreview,
     FutureGamePreview,

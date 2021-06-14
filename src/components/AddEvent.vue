@@ -17,6 +17,9 @@
         <b-form-invalid-feedback v-if="!$v.form.match_id.required">
           Match id name is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.match_id.valid">
+         Match id is not exist
+        </b-form-invalid-feedback>
         </b-form-group>
       
       <!-- Date -->
@@ -33,6 +36,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.date.required">
           Date is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.date.valid">
+         Format "12/02/2021" is required 
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -51,6 +57,9 @@
         <b-form-invalid-feedback v-if="!$v.form.time.required">
           Time is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.time.valid">
+        Format "18:00" is required 
+        </b-form-invalid-feedback>
       </b-form-group>
 
       <!-- Game minute -->
@@ -68,6 +77,9 @@
         <b-form-invalid-feedback v-if="!$v.form.gamemin.required">
           Game minute is required
         </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.gamemin.between">
+          Match minute must be between 1-90 
+        </b-form-invalid-feedback>
         </b-form-group>
 
       <!-- Event -->
@@ -84,6 +96,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.event.required">
           Event description is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.event.alpha">
+          Event must be letters only
         </b-form-invalid-feedback>
         </b-form-group>
 
@@ -119,13 +134,15 @@ import {
   maxLength,
   alpha,
   sameAs,
-  email
+  email,
+  between
 } from "vuelidate/lib/validators";
 
 export default {
   name: "AddEvent",
   data() {
     return {
+      matches_id : [],
       form: {
         match_id: "",
         date: "",
@@ -141,21 +158,34 @@ export default {
   validations: {
     form: {
       match_id: {
-        required
+        required,
+          valid: function(value) {
+          const containsNumber = (this.matches_id.includes(parseInt(value)))
+          return containsNumber
+      },
       },
       date: {
         required,
-        // length: (u) => minLength(3)(u) && maxLength(8)(u),
+          valid: function(value) {
+          const containsNumber = /^(?:(?:31(\/)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.test(value)
+          return containsNumber
+      },
       },
       time: {
         required,
+          valid: function(value) {
+          const containsNumber = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/.test(value)
+          return containsNumber
+      },
         
       },
       gamemin: {
-        required
+        required,
+        between: between(1, 90)
       },
       event: {
-        required
+        required,
+        alpha
       }
     }
   },
@@ -206,8 +236,31 @@ export default {
       this.$nextTick(() => {
         this.$v.$reset();
       });
+    },
+    async allMatches() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/league/getAllMatches`,
+        );
+        //future games
+          const future = response.data;
+          this.future = [];
+          this.future.push(...future);
+
+          this.matches_id = [];
+          response.data.forEach(element => {
+          this.matches_id.push(element.match_id);
+            }
+          );     
+      } catch (error) {
+        console.log("error in geting games in add result")
+        console.log(error);
+      }
     }
-  }
+  },
+  mounted(){
+    this.allMatches(); 
+  },
 };
 
 </script>

@@ -14,6 +14,10 @@
       </b-card-text>
     </b-card>
     <br/>
+    <br/>
+    <br/>
+    <br/>
+
     <FutureGamePreview 
       title= "Next game details:"
     :hostTeam= "hostTeam"

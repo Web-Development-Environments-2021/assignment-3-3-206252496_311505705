@@ -20,22 +20,29 @@
           </b-input-group-append>
         </b-input-group>
       </center>
-
-
       <br/>
       Your search Query: {{ searchQuery }}
       <br/>
-      
       <div v-if="isPlayer">
         <PlayerSearch 
         v-for="(g,index) in playersLimited"
         :name="g.name" 
         :team_name="g.team_name" 
         :image="g.image"
-        :position="g.position"
+        :position="g.position.toString()"
         :player_id="g.player_id"    
         :key="index"></PlayerSearch>
+        </div>
+        <br/>
+        <div v-if="players.length != 0">
+            <mdb-datatable 
+            :data="players_data"
+            striped
+            bordered
+            fixed
+            />
       </div>
+
       <div v-if="isTeam">
         <TeamSearch 
         v-for="g in teamsLimited"
@@ -43,16 +50,15 @@
         :team_logo="g.team_logo" 
         :team_id="g.team_id"    
         :key="g.team_name"></TeamSearch>
-      </div>
-            <div v-if="players.length != 0">
+        </div>
+              <br/>
+            <div v-if="teams.length != 0">
             <mdb-datatable 
-            :data="players_data"
+            :data="teams_data"
             striped
             bordered
             fixed
             />
-      <br/>
-      <br/>
       </div>
   </div>
 </template>
@@ -103,6 +109,11 @@ export default {
               field: 'team_name',
               sort: 'asc'
             },
+            {
+              label: 'team_page ⇅',
+              field: 'team_page',
+              sort: 'asc'
+            },
           ],
           rows: []
       }
@@ -125,6 +136,13 @@ export default {
         const teams = response.data;
         this.teams = [];
         this.teams.push(...teams);
+        this.teams_data.rows = [];
+          response.data.forEach(element => {
+            const rows = {
+            team_name: element.team_name
+            }
+            this.teams_data.rows.push(rows);
+          }); 
       } catch (error) {
         console.log("error in update teams in search")
         console.log(error);
@@ -140,6 +158,9 @@ export default {
           this.players.push(...players);
           this.players_data.rows = [];
           response.data.forEach(element => {
+          if (element.position == undefined ||  element.position == null || element.position == "undefined"){
+              element.position = "No position"
+            }
             const rows = {
             name: element.name,
             team_name: element.team_name,

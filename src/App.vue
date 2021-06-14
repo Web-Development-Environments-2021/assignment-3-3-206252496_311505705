@@ -4,13 +4,15 @@
       <b-navbar-brand :to="{ name: 'main' }">Superliga Vue</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
-        <b-nav-item :to="{ name: 'games' }">Games</b-nav-item>
+        <b-nav-item :to="{ name: 'games' }">Matches</b-nav-item>
+        <b-nav-item :to="{ name: 'about' }">About</b-nav-item>
+
         <!-- <b-nav-item :to="{ name: 'team' }">Team</b-nav-item> -->
 
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
+          <h5 style="color:white;padding: 8px 6px;">hello guest! </h5>
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
         </b-navbar-nav>
@@ -18,7 +20,7 @@
         <b-navbar-nav class="ml-auto" v-else-if="findIfRepresentative() && isRepresentative==true">
         <b-nav-item-dropdown right>
           <template #button-content>
-            User
+            {{$root.store.username}}
           </template>
           <b-dropdown-item href="#/league">Manage League</b-dropdown-item>
           <b-dropdown-item href="#/Favorites">Favorites</b-dropdown-item>

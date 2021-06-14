@@ -21,7 +21,7 @@
           Username length should be between 3-8 characters long
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          Username alpha
+          Username must be letters only
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -41,7 +41,7 @@
           First name is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          First name alpha
+          First name must be letters only
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -61,7 +61,7 @@
           Last name is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
-          lastname alpha
+          Last name must be letters only
         </b-form-invalid-feedback>
           </b-form-group>
 

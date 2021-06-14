@@ -17,6 +17,9 @@
         <b-form-invalid-feedback v-if="!$v.form.match_id.required">
           Match id name is required
         </b-form-invalid-feedback>
+          <b-form-invalid-feedback v-if="!$v.form.match_id.valid">
+         Match id is not exist
+        </b-form-invalid-feedback>
         </b-form-group>
       
       <!-- Result -->
@@ -33,6 +36,9 @@
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.result.required">
           Result is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.result.valid">
+         Format "2-0" is required 
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -76,6 +82,7 @@ export default {
   name: "addResult",
   data() {
     return {
+      matches_id : [],
       form: {
         match_id: "",
         result: ""
@@ -87,11 +94,18 @@ export default {
   validations: {
     form: {
       match_id: {
-        required
+        required,
+          valid: function(value) {
+          const containsNumber = (this.matches_id.includes(parseInt(value)))
+          return containsNumber
+      },
       },
       result: {
         required,
-        // length: (u) => minLength(3)(u) && maxLength(8)(u),
+          valid: function(value) {
+          const containsNumber = /^[0-9]{1}\-[0-9]{1}$/.test(value)
+          return containsNumber
+      },
       }
     }
   },
@@ -136,8 +150,31 @@ export default {
       this.$nextTick(() => {
         this.$v.$reset();
       });
-    }
-  }
+    },
+    async allMatches() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:3000/league/getAllMatches`,
+        );
+        //future games
+          const future = response.data;
+          this.future = [];
+          this.future.push(...future);
+
+          this.matches_id = [];
+          response.data.forEach(element => {
+          this.matches_id.push(element.match_id);
+            }
+          );     
+      } catch (error) {
+        console.log("error in geting games in add result")
+        console.log(error);
+      }
+    },   
+  },
+    mounted(){
+    this.allMatches(); 
+  },
 };
 
 </script>

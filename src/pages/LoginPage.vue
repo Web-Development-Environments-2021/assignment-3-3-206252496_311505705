@@ -94,7 +94,6 @@ export default {
     },
     async Login() {
       try {
-        console.log(this.form.password);
         const response = await this.axios.post(
           "http://localhost:3000/Login",
           {

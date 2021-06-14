@@ -42,7 +42,7 @@ props: {
         required: true
       },
       position: {
-        type: Number,
+        type: String,
         required: true
       },
       player_id: {

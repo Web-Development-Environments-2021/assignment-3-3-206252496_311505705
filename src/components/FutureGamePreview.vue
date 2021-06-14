@@ -4,8 +4,10 @@
       <b>{{title}}</b> 
     </div>
     <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
+      <li> host team: <router-link  :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link  :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <!-- <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
+      <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> -->
       <li> date: {{ date }}</li>
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
@@ -57,8 +59,8 @@ export default {
   }, 
   data() {
     return {
-      hostTeamID: "hostTeam",
-      guestTeamID: "guestTeam" 
+      hostTeamID: "Midtjylland",
+      guestTeamID: "Midtjylland" 
     };
   },
   methods: {
@@ -78,39 +80,41 @@ export default {
         console.log(error);
       }
     },
-    async host_id(team_name) {
+    async host_id(host) {
       try {
-        let name = team_name;
-        console.log(name)
+        let name = host;
         const response = await this.axios.get(
           `http://localhost:3000/teams/searchTeam/${name}`,
         );
-        this.hostTeamID = response.data.team_id;
+        this.hostTeamID = response.data[0].team_id;
       } catch (error) {
-        console.log("error in update teams in search")
+        console.log("error in future game preview - getting host_id")
         console.log(error);
       }
     },
-    async guest_id(team_name) {
+    async guest_id(guest) {
       try {
-        let name = team_name;
-        console.log(name)
+        let name = guest;
         const response = await this.axios.get(
           `http://localhost:3000/teams/searchTeam/${name}`,
         );
-        this.guestTeamID = response.data.team_id;
+        this.guestTeamID = response.data[0].team_id;
       } catch (error) {
-        console.log("error in update teams in search")
+        console.log("error in future game preview - getting guest_id")
         console.log(error);
       }
     },
   },
   mounted(){
     console.log("Future game preview mounted")
-    // this.host_id(this.hostTeam);
-    // this.guest_id(this.guestTeam)
-
-  } 
+    this.host_id(this.hostTeam);
+    this.guest_id(this.guestTeam)
+  },
+  // computed:{
+  //    refresh() {
+  //     return this.$router.go(this.$router.currentRoute)
+  //   }
+// },
 };
 </script>
 
