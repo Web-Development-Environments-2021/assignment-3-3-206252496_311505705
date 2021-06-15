@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Add Match To League</h1>
+    <h3 class="title">Add Match To League:</h3>
     <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
       <!-- Date -->
       <b-form-group
@@ -106,8 +106,9 @@
       <b-button
         type="submit"
         variant="primary"
-        style="width:250px;"
+        style="width:250px; background-color:#907FA4; color: white; border-color:#7A6F9B"
         class="ml-5 w-75"
+        id="subtitle"
         >Add Match</b-button
       >
     </b-form>
@@ -241,4 +242,21 @@ export default {
 .container {
   max-width: 500px;
 }
+#subtitle{
+	background-color: #8585ad;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	font-size: 17px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 12px;
+  }
+
+#subtitle:hover {opacity: 1}
 </style>

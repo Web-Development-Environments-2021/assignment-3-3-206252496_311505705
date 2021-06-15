@@ -1,6 +1,10 @@
 <template>
   <div class="container">
+
+        <br/>
     <h1 class="title">Login</h1>
+        <br/>
+
     <b-form @submit.prevent="onLogin">
       <b-form-group
         id="input-group-Username"
@@ -41,10 +45,11 @@
         variant="primary"
         style="width:100px;display:block;"
         class="mx-auto w-100"
+        id="subtitle"
         >Login</b-button
       >
       <div class="mt-2">
-        Do not have an account yet?
+       Do you already have an account?
         <router-link to="register"> Register in here</router-link>
       </div>
     </b-form>
@@ -122,7 +127,7 @@ export default {
       // console.log("login method go");
 
       this.Login();
-    }
+    },
   }
 };
 </script>
@@ -130,4 +135,22 @@ export default {
 .container {
   max-width: 400px;
 }
+
+#subtitle{
+	background-color: #8585ad;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	font-size: 17px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 12px;
+  }
+
+#subtitle:hover {opacity: 1}
 </style>

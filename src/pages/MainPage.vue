@@ -4,9 +4,9 @@
     <b-container class="bv-example-row bv-example-row-flex-cols">
       <div v-if="!$root.store.username">
         <b-row>
-          <b-col align-self="baseline"><LeagueInfo></LeagueInfo></b-col>
+          <b-col align-self="baseline"><br/><br/><LeagueInfo></LeagueInfo></b-col>
           <!-- <div class="vl"></div> -->
-          <b-col align-self="stretch"><LoginPage ></LoginPage></b-col>
+          <b-col align-self="stretch"><br/><br/><br/><br/><br/><br/><br/><LoginPage ></LoginPage></b-col>
         </b-row>
       </div>
       <div v-else>
@@ -68,7 +68,7 @@ export default {
   text-align: center;
   display: inline-block;
   width: 350px;
-  height: 830px;
+  height: 840px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
