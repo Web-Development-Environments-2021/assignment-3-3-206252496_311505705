@@ -14,17 +14,16 @@
   <center>
     <br/>
     <br/>
-
-    <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <b-button @click="showPlayer" style="background-color: #2f5d62" >Show Players</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPast" style="background-color: #907FA4" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPlayer" style="background-color: #907FA4" >Show Players</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <br/>
   </center>
     <hr>
     <br/>
         <div v-if="showplayer">
       <div v-if="players.length != 0">
-        <PlayerSearch 
+        <PlayerSearch style="padding: 20px 20px; display: inline-block;"
         v-for="(g,index) in playersLimited"
         :name="g.name" 
         :team_name="g.team_name" 

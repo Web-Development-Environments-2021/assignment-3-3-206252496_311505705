@@ -30,8 +30,8 @@
       <b-card-title>{{title}}</b-card-title>
       <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
       <b-card-text>
-      <li> host team: <router-link :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
-      <li> guest team: <router-link :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <li> host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
       <li> date: {{ date }}</li>
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
@@ -128,7 +128,13 @@ export default {
         console.log("error in update teams in search")
         console.log(error);
       }
-    }
+    },
+    play_host_id(){
+      this.host_id(this.hostTeam);
+    },
+    play_guest_id(){
+      this.guest_id(this.guestTeam)
+    },
   },
   mounted(){
     console.log("Past game preview mounted")

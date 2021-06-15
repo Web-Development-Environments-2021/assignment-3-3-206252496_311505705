@@ -1,6 +1,22 @@
 <template>
-  <div class="game-preview">
-    <div class="game-title">
+  <!-- <div class="game-preview">
+  <b-card style="width: 226px; height:180px display: inline-block">
+    <b-card-body>
+      <b-card-title>Event {{isCount}}:</b-card-title>
+      <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title>
+      <b-card-text style="  text-align: left;">
+      <li> date: {{ date }}</li>
+      <li> time: {{ time }}</li>
+      <li> gamemin: {{ gamemin }}</li>
+      <li> event: {{ event }}</li>
+      </b-card-text>
+    </b-card-body>
+
+  </b-card>
+  </div> -->
+  <div class="game-preview" style="width: 210px; height:180px; border-color:#2c3e50;">
+    <div class="game-title" style="color:  #907FA4;">
+                <br/>
       <b>Event {{isCount}}:</b> 
     </div>
     <ul class="game-content">
@@ -60,13 +76,13 @@ export default {
   border-style: solid;
   border-radius: 5px;
   border-width: 5px;
-  border-color:cadetblue;
+  border-color:#2c3e50;
 }
 
 .game-preview .game-title {
   text-align: center;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color:  #907FA4;
 }
 
 .game-preview .game-content {

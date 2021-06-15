@@ -7,9 +7,9 @@
     <center>
       <br/>
       <h4 style="padding: 0px 20px;"> What would you like to do:</h4>
-      <b-button @click="ToEvent()" style="background: #2f5d62" >Add Event</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <b-button  @click="ToResult()" style="background: #2f5d62" >Add Result</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <b-button  @click="ToMatch()" style="background: #2f5d62" >Add Match</b-button>
+      <b-button @click="ToEvent()" style="background: #907FA4" >Add Event</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button  @click="ToResult()" style="background: #907FA4" >Add Result</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button  @click="ToMatch()" style="background: #907FA4" >Add Match</b-button>
     </center>
       <br/>
       <div v-if="toShow == `match`">

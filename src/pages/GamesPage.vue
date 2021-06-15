@@ -1,15 +1,16 @@
 <template>
 <div>
+  <div class="Games">
     <div class="container">
       <br/>
     <h1 class="title">Match Page</h1>
     </div>
     <center>
-    <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPast" style="background-color: #907FA4" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     </center>
     <hr>
-    <div v-if="showfuture">
+    <div v-if="showfuture" class="component">
       <div v-if="future.length != 0">
       <center>
       <h3 class="title">Future Mathces</h3>
@@ -45,6 +46,7 @@
         </div>
       </div>
   </div>
+</div>
 </template>
 
 
@@ -118,4 +120,10 @@ export default {
   margin-left: 20px; 
   width: 500px; 
 }
+/* .Games{
+    background-color: #f6e7cb;
+}
+.component{
+      background-color: #f6e7cb;
+} */
 </style>

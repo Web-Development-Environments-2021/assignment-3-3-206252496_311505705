@@ -1,4 +1,5 @@
 <template>
+<div class="main">
   <div class="container">
     <b-container class="bv-example-row bv-example-row-flex-cols">
       <div v-if="!$root.store.username">
@@ -18,6 +19,7 @@
       </div>  
     </b-container>
   </div>
+</div>
 </template>
 
 
@@ -35,6 +37,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main{
+  background-image: url("https://res.cloudinary.com/dwg8ravkv/image/upload/v1623752748/background_xlfkwv.jpg") ;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 900px;
+}
 .RandomRecipes {
   margin: 10px 0 10px;
 }
@@ -66,7 +74,7 @@ export default {
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;
-  border-color:rgb(11, 131, 161);
+  border-color:#2c3e50;
 }
 .subtitle{
   text-align: left;

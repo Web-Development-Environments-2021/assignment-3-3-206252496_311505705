@@ -27,8 +27,8 @@
       <b-card-title>{{title}}</b-card-title>
       <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
       <b-card-text style="  text-align: left;">
-      <li> host team: <router-link  :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
-      <li> guest team: <router-link  :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <li> host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
       <!-- <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
       <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> -->
       <li> date: {{ date }}</li>
@@ -43,7 +43,8 @@
           <a  target="_blank"
               @click="addToFavorite"
               class="btn btn-primary"
-              >Add to fatorites</a>
+              style="background-color: #907FA4; border-color:#7A6F9B"
+              >Add to fatorites &#11088;</a>
             </b-card-footer>
 
         </div>
@@ -132,6 +133,12 @@ export default {
         console.log("error in future game preview - getting guest_id")
         console.log(error);
       }
+    },
+    play_host_id(){
+      this.host_id(this.hostTeam);
+    },
+    play_guest_id(){
+      this.guest_id(this.guestTeam)
     },
   },
   mounted(){

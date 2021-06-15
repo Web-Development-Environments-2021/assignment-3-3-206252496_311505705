@@ -8,8 +8,8 @@
     <br/>
       <center>
         <h4 style="padding: 0px 20px;"> What would you like to search:</h4>
-            <b-button @click="showTeams" style="background-color: #2f5d62" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <b-button  @click="showPlayers"  style="background-color: #2f5d62" >Players</b-button>
+            <b-button @click="showTeams" style="background-color: #907FA4" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <b-button  @click="showPlayers"  style="background-color: #907FA4" >Players</b-button>
       </center>
     <br/>
       <center>
@@ -17,7 +17,7 @@
           <b-form-input v-model="searchQuery"></b-form-input>
           <b-input-group-append>
               <div class="container">
-            <b-button variant= "success" :disabled='isTeam == isPlayer' @click="Search">Search</b-button>
+            <b-button style="background-color:#2c3e50" :disabled='isTeam == isPlayer' @click="Search">Search</b-button>
               </div>
           </b-input-group-append>
         </b-input-group>
@@ -28,8 +28,8 @@
       <br/>
       <div v-if="isPlayer">
       <div v-if="players.length != 0">
-            <mdb-datatable 
-            :data="players_data"
+            <mdb-datatable
+            v-model="players_data"
             striped
             bordered
             fixed
@@ -56,6 +56,7 @@
         bordered
         fixed
         />
+
       </div>
       <div v-else-if="search">
         Your search did not match any Team. 
@@ -73,7 +74,7 @@
 
 
 <script>  
-  import { mdbDatatable } from 'mdbvue';
+  import { mdbDatatable} from 'mdbvue';
   import TeamSearch from "../components/TeamSearch";
   import PlayerSearch from "../components/PlayerSearch";
 export default {
@@ -81,7 +82,7 @@ export default {
   components: {
     PlayerSearch,
     TeamSearch,
-    mdbDatatable
+    mdbDatatable,
   },
  data() {
     return {

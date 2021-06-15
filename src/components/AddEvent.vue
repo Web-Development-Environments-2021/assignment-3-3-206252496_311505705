@@ -106,7 +106,7 @@
       <b-button
         type="submit"
         variant="primary"
-        style="width:250px;"
+        style="width:250px; background-color:#91D18B; border-color:#1F441E; color:white;"
         class="ml-5 w-75"
         >Add Event</b-button
       >

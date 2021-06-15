@@ -3,7 +3,7 @@
       <b-card
       img-alt="Image"
       tag="article"
-      style="height: 490px; width: 390px;"
+      style="height: 490px; width: 390px; background-color: transparent;"
       class="mb-2"
     >
       <b-card-title style="font-size: 40px; width: 500px;">{{leagueName}}</b-card-title>
@@ -83,6 +83,7 @@ export default {
 
 <style>
 .league-preview {
+  background-color: transparent;
   display: inline-block;
   width: 400px;
   height: 500px;
@@ -91,7 +92,7 @@ export default {
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;
-  border-color:rgb(11, 131, 161);
+  border-color:#2c3e50;
 }
 
 .league-preview .league-title {

@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
+  <div class="container" :key="componentKey">
+        <!-- <component-to-re-render :key="componentKey" /> -->
           <br/>
       <br/>
-
     <h1 class="title">About</h1>
           <br/>
-  <div>
-      <b-card title="Hello!"  style="max-width: 62rem;">
+      <div>
+      <b-card title="Hello!"  class="api" >
         <b-card-text>We are Ori Ben-Artzy and Mor Zweig.</b-card-text>
         <b-card-text>We are 3rd year students at ”Ben-Gurion” University.</b-card-text>
         <b-card-text>Studing Software and Information Systems Engineering.</b-card-text>
@@ -16,7 +16,7 @@
         target="_blank"
         href="https://app.swaggerhub.com/apis-docs/OriMor/SUPERLIGA_API/1.0.0"
         class="btn btn-primary"
-        style="background-color:#D4CDF4; color: #7A6F9B; border-color:#7A6F9B"
+        style="background-color:#907FA4; color: white; border-color:#7A6F9B"
         >Go to our API</a>
         <br/>
         </b-card>
@@ -41,7 +41,7 @@
         target="_blank"
         href="https://web-development-environments-2021.github.io/206252496/"
         class="btn btn-primary"
-        style="background-color:#D4CDF4; color: #7A6F9B; border-color:#7A6F9B"
+        style="background-color:#907FA4; color: white; border-color:#7A6F9B"
         >Go to the website</a>
         </center>
         </b-card-text>
@@ -65,7 +65,7 @@
         target="_blank"
         href=" https://web-development-environments-2021.github.io/Assignment2_311505705_206252496/"
         class="btn btn-primary"
-        style="background-color:#D4CDF4; color: #7A6F9B; border-color:#7A6F9B; hight:15px"
+        style="background-color: #907FA4; color: white; border-color:#7A6F9B; hight:15px"
         >Go to our pacman game</a>
         </center>
         </b-card-text>
@@ -89,7 +89,7 @@
         target="_blank"
         href=" https://web-development-environments-2021.github.io/311505705/"
         class="btn btn-primary"
-        style="background-color:#D4CDF4; color: #7A6F9B; border-color:#7A6F9B"
+        style="background-color:#907FA4; color: white; border-color:#7A6F9B"
         >Go to the website</a>
           </center>
 
@@ -105,17 +105,32 @@
 export default {
     data() {
       return {
-        show: false
+        componentKey: 0
       }
+    },
+    methods:{
+      // REFRESH(){
+      // // return this.$router.go(this.$router.currentRoute)
+      // console.log("***************")
+      //  this.$forceUpdate()
+      //  return true
+      // },
+      forceRerender() {
+      this.componentKey += 1
+    }
     },
     // computed:{
     //   REFRESH(){
-    //   return this.$router.go(this.$router.currentRoute)
+    //   // return this.$router.go(this.$router.currentRoute)
+    //   return this.$forceUpdate()
     //   }
     // },
-    // mounted(){
-    //   this.$router.go()
-    // }
+    mounted(){
+      this.componentKey += 1
+      // this.$router.go()
+      console.log("forceUpdate")
+      // this.$forceUpdate()
+    }
 };
 </script>
 
@@ -130,5 +145,12 @@ export default {
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
   cursor: default;
+}
+.mb-2{
+  max-width: 21rem;
+   display: inline-block;
+}
+.api{
+  max-width: 62rem;
 }
 </style>
