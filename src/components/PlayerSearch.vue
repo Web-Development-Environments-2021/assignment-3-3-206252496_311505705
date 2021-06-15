@@ -1,5 +1,7 @@
 <template>
-  <div class="card" style="width: 18rem">
+  <!-- <div class="card" style="width: 18rem; display: inline-block"> -->
+    <div>
+      <b-card style="width: 350px; height:300px; display: inline-block">
     <div class="card-body">
       <h5 class="card-title">{{ name }}</h5>
       <p class="card-text">
@@ -18,7 +20,7 @@
       style="height: 100px; width: auto; text-align: center"
     />
     </center>
-
+      </b-card>
   </div>
 </template>
 
@@ -102,4 +104,7 @@ props: {
   display: inline-block;
   margin: 6px;
 }
+/* .card-body{
+  height:500px;
+} */
 </style>

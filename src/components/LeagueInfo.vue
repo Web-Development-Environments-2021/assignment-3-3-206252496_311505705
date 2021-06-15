@@ -3,30 +3,32 @@
       <b-card
       img-alt="Image"
       tag="article"
-      style="max-width: 20rem;"
+      style="height: 490px; width: 390px;"
       class="mb-2"
     >
-      <b-card-title>{{leagueName}}</b-card-title>
+      <b-card-title style="font-size: 40px; width: 500px;">{{leagueName}}</b-card-title>
       <b-card-text>
         Season: {{ season }}
         <br/>
         Stage: {{ stage }}
       </b-card-text>
-    </b-card>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+        <br/>
+        <br/>
+      <center>
+        <b-card-footer style="text-align: left;">
+          <FutureGamePreview 
+          title= "Next Match Details:"
+        :hostTeam= "hostTeam"
+        :guestTeam= "guestTeam" 
+        :date= "date" 
+        :hour= "hour" 
+        :stadium= "stadium" 
+        :match_id= 0
+        :key="555"></FutureGamePreview>
+      </b-card-footer>
+      </center>
 
-    <FutureGamePreview 
-      title= "Next Match Details:"
-    :hostTeam= "hostTeam"
-    :guestTeam= "guestTeam" 
-    :date= "date" 
-    :hour= "hour" 
-    :stadium= "stadium" 
-    :match_id= 0
-    :key="555"></FutureGamePreview>
+    </b-card>
   </div>
 </template>
 
@@ -82,14 +84,14 @@ export default {
 <style>
 .league-preview {
   display: inline-block;
-  width: 250px;
-  height: 218px;
+  width: 400px;
+  height: 500px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;
-  border-color:rgb(44, 89, 116);
+  border-color:rgb(11, 131, 161);
 }
 
 .league-preview .league-title {

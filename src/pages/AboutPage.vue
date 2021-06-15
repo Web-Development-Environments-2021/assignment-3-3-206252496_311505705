@@ -17,7 +17,7 @@
         href="https://app.swaggerhub.com/apis-docs/OriMor/SUPERLIGA_API/1.0.0"
         class="btn btn-primary"
         style="background-color:#D4CDF4; color: #7A6F9B; border-color:#7A6F9B"
-        >Go to our API!</a>
+        >Go to our API</a>
         <br/>
         </b-card>
         <br/>

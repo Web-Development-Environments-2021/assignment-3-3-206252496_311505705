@@ -30,8 +30,8 @@
       <b-card-title>{{title}}</b-card-title>
       <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
       <b-card-text>
-      <li> host team: <router-link :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
-      <li> guest team: <router-link :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <li> host team: <router-link :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
       <li> date: {{ date }}</li>
       <li> time: {{ hour }}</li>
       <li> stadium: {{ stadium }}</li>
@@ -39,8 +39,7 @@
       </b-card-text>
     </b-card-body>
 
-    <b-list-group flush>
-    <b-list-group-item>
+    <!-- <b-list-group flush> -->
         <EventPreview 
         v-for="(g,index) in events"
         :date="g.date" 
@@ -48,8 +47,8 @@
         :gamemin="g.gamemin"
         :event="g.event"
         :count="index" 
-        :key="g.gamemin"></EventPreview></b-list-group-item>
-    </b-list-group>
+        :key="g.gamemin"></EventPreview>
+    <!-- </b-list-group> -->
   </b-card>
   <hr>
 
@@ -100,8 +99,8 @@ export default {
   }, 
     data() {
     return {
-      hostTeamID: "hostTeam",
-      guestTeamID: "guestTeam" ,
+      hostTeamID: "939",
+      guestTeamID: "939" ,
       show: false
     };
   },
@@ -133,8 +132,8 @@ export default {
   },
   mounted(){
     console.log("Past game preview mounted")
-    this.host_id(this.hostTeam);
-    this.guest_id(this.guestTeam)
+    // this.host_id(this.hostTeam);
+    // this.guest_id(this.guestTeam)
   } 
 };
 </script>

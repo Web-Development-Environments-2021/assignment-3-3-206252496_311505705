@@ -28,7 +28,7 @@
         </b-nav-item-dropdown>
         </b-navbar-nav>
         <!-- // no permission -->
-        <b-navbar-nav class="ml-auto" v-else-if="findIfRepresentative() && isRepresentative==false">
+        <b-navbar-nav class="ml-auto" v-else>
         <b-nav-item-dropdown right>
           <template #button-content>
             User
@@ -62,6 +62,7 @@ export default {
     },
     async findIfRepresentative() {
       try {
+        console.log("findIfRepresentative")
         const response = await this.axios.get(
           `http://localhost:3000/league/isRepresentative`,
         );        

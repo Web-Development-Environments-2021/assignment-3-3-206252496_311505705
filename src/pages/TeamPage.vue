@@ -1,6 +1,8 @@
 <template>
 <div>
+    <div class="container">
   <center>
+        <br/>
     <h1 class="title">{{team_name}}</h1>
     <img
       :src= "team_logo"
@@ -8,11 +10,15 @@
       style="height: 100px; width: auto; text-align: center"
     />
   </center>
+    </div>
   <center>
+    <br/>
+    <br/>
+
     <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <b-button @click="showPlayer" style="background-color: #2f5d62" >Show Players</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
+    <br/>
   </center>
     <hr>
     <br/>
@@ -45,7 +51,7 @@
       </div>
       <div v-if="showfuture">
       <div v-if="future.length != 0">
-      <FutureGamePreview
+      <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
         v-for="(g,index) in future"
         title="Match Details:"
         :hostTeam="g.hometeam" 

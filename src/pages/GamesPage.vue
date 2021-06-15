@@ -1,6 +1,9 @@
 <template>
 <div>
+    <div class="container">
+      <br/>
     <h1 class="title">Match Page</h1>
+    </div>
     <center>
     <b-button @click="showFuture" style="background-color: #2f5d62" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <b-button @click="showPast" style="background-color: #2f5d62" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

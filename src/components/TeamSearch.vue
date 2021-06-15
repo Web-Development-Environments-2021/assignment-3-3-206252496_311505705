@@ -1,19 +1,20 @@
 <template>
-  <div class="card" style="width: 18rem">
+  <!-- <div class="card" style="width: 18rem"> -->
+    <div>
+  <b-card style="width: 300px; height:250px; display: inline-block">
     <div class="card-body">
         <h5 class="card-title" style="text-align: center">{{ team_name }}</h5>
     </div>
     <center>
-
-    <router-link :to="{name:`teams`, params:{team_id:team_id}}">Go to team's page</router-link>
-
     <img
       :src= "team_logo"
       class="card-img-bottom"
       style="height: 100px; width: auto; text-align: center"
     />
+    <br/>
+    <router-link :to="{name:`teams`, params:{team_id:parseInt(team_id), team_name:team_name}}">Go to team's page</router-link>
     </center>
-
+  </b-card>
   </div>
 </template>
 
@@ -33,7 +34,7 @@ export default {
         required: true
       },
       team_id: {
-        type: Number,
+        type: String,
         required: true
       },
   },

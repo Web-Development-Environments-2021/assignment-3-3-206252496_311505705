@@ -14,7 +14,7 @@
         <div v-if="newsLimited.length==0" style="transition-delay: 5s">No games in favorites</div>
     </div>
       <div v-else>
-        <FutureGamePreview
+        <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
         v-for="g in games"
         title="Match Details:"
         :hostTeam="g.hometeam" 

@@ -1,6 +1,10 @@
 <template>
 <div>
+      <div class="container">
+      <br/>
     <h1 class="title">Search Page</h1>
+      </div>
+    <hr>
     <br/>
       <center>
         <h4 style="padding: 0px 20px;"> What would you like to search:</h4>
@@ -23,7 +27,19 @@
       <!-- Your search Query: {{ searchQuery }} -->
       <br/>
       <div v-if="isPlayer">
-        <PlayerSearch 
+      <div v-if="players.length != 0">
+            <mdb-datatable 
+            :data="players_data"
+            striped
+            bordered
+            fixed
+            />
+      </div>
+      <div v-else-if="search">
+        Your search did not match any Player. 
+      </div>
+      <br/>
+        <PlayerSearch style="padding: 20px 20px; display: inline-block;"
         v-for="(g,index) in playersLimited"
         :name="g.name" 
         :team_name="g.team_name" 
@@ -31,41 +47,27 @@
         :position="g.position.toString()"
         :player_id="g.player_id"    
         :key="index"></PlayerSearch>
-        <br/>
-        <div v-if="players.length != 0 && search">
-            <mdb-datatable 
-            :data="players_data"
-            striped
-            bordered
-            fixed
-            />
-        </div>
-      <div v-else-if="search">
-        Your search did not match any Player. 
-      </div>
     </div>
       <div v-if="isTeam">
-        <TeamSearch 
+      <div v-if="teams.length != 0">
+        <mdb-datatable 
+        :data="teams_data"
+        striped
+        bordered
+        fixed
+        />
+      </div>
+      <div v-else-if="search">
+        Your search did not match any Team. 
+      </div>
+        <br/>
+        <TeamSearch style="padding: 20px 20px; display: inline-block;"
         v-for="g in teamsLimited"
         :team_name="g.team_name" 
         :team_logo="g.team_logo" 
-        :team_id="g.team_id"    
+        :team_id="g.team_id.toString()"    
         :key="g.team_name"></TeamSearch>
-              <br/>
-            <div v-if="teams.length != 0">
-            <mdb-datatable 
-            :data="teams_data"
-            striped
-            bordered
-            fixed
-            />
-            </div>
-            <div v-else-if="search">
-        Your search did not match any Team. 
       </div>
-      </div>
-
-
   </div>
 </template>
 

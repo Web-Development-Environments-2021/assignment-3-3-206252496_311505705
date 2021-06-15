@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br/>
     <h1 class="title">Favorites Page</h1>
     <FavoriteGames :num_of_fav=10 ></FavoriteGames>
   </div>

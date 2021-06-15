@@ -1,8 +1,12 @@
 <template>
-<div>
+<div>    <br/>
+        <div class="container">
     <h1 class="title">League Manage Page</h1>
-    <br/>
+        </div>
+    <hr>
     <center>
+      <br/>
+      <h4 style="padding: 0px 20px;"> What would you like to do:</h4>
       <b-button @click="ToEvent()" style="background: #2f5d62" >Add Event</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       <b-button  @click="ToResult()" style="background: #2f5d62" >Add Result</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       <b-button  @click="ToMatch()" style="background: #2f5d62" >Add Match</b-button>
@@ -17,6 +21,7 @@
       <div v-if="toShow == `result`">
         <AddResult></AddResult>
       </div>
+          <hr>
       <br/>
       <div v-if="future.length != 0">
             <mdb-datatable 

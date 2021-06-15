@@ -26,9 +26,9 @@
     <b-card-body>
       <b-card-title>{{title}}</b-card-title>
       <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
-      <b-card-text>
-      <li> host team: <router-link  :to="{name:`teams`, params:{team_id:hostTeamID, team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
-      <li> guest team: <router-link  :to="{name:`teams`, params:{team_id:guestTeamID, team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+      <b-card-text style="  text-align: left;">
+      <li> host team: <router-link  :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+      <li> guest team: <router-link  :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
       <!-- <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
       <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> -->
       <li> date: {{ date }}</li>
@@ -88,8 +88,8 @@ export default {
   }, 
   data() {
     return {
-      hostTeamID: 0,
-      guestTeamID: 0 
+      hostTeamID: "939",
+      guestTeamID: "939" 
     };
   },
   methods: {
@@ -136,8 +136,8 @@ export default {
   },
   mounted(){
     console.log("Future game preview mounted")
-    this.host_id(this.hostTeam);
-    this.guest_id(this.guestTeam)
+    // this.host_id(this.hostTeam);
+    // this.guest_id(this.guestTeam)
   },
   // computed:{
   //    refresh() {
