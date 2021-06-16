@@ -1,8 +1,9 @@
 <template>
-<div>    <br/>
-        <div class="container">
-    <h1 class="title">League Manage Page</h1>
-        </div>
+  <div>    
+    <br/>
+    <div class="container">
+      <h1 class="title">League Manage Page</h1>
+    </div>
     <hr>
     <center>
       <br/>
@@ -11,28 +12,28 @@
       <b-button  @click="ToResult()" style="background: #907FA4" >Add Result</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       <b-button  @click="ToMatch()" style="background: #907FA4" >Add Match</b-button>
     </center>
-      <br/>
-      <div v-if="toShow == `match`">
-        <AddMatchPreview></AddMatchPreview>
-      </div>
-      <div v-if="toShow == `event`">
-        <AddEvent></AddEvent>
-      </div>
-      <div v-if="toShow == `result`">
-        <AddResult></AddResult>
-      </div>
-          <hr>
-      <br/>
-      <div v-if="future.length != 0">
-            <mdb-datatable 
-            :data="data"
-            striped
-            bordered
-            fixed
-            />
-      <br/>
-      <br/>
-      </div>
+    <br/>
+    <div v-if="toShow == `match`">
+      <AddMatchPreview></AddMatchPreview>
+    </div>
+    <div v-if="toShow == `event`">
+      <AddEvent></AddEvent>
+    </div>
+    <div v-if="toShow == `result`">
+      <AddResult></AddResult>
+    </div>
+    <hr>
+    <br/>
+    <div v-if="future.length != 0">
+          <mdb-datatable 
+          :data="data"
+          striped
+          bordered
+          fixed
+          />
+    <br/>
+    <br/>
+    </div>
   </div>
 </template>
 
@@ -144,17 +145,11 @@ export default {
   mounted(){
     console.log("games page mounted");
     this.allMatches(); 
-    // this.addMatch(); 
-    // this.addResult(); 
-    // this.addEvent(); 
-
-
   },
 }
 </script>
 
 <style scoped>
-
 #search-input {
   margin-left: 20px; 
   width: 500px; 

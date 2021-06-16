@@ -21,21 +21,18 @@
       weight:{{weight}}
       </p>
     </div>
-        <center>
-    <img
-      :src= "image"
-      class="card-img-bottom"
-      style="height: 100px; width: auto; text-align: center"
-    />
-        </center>
-
+    <center>
+      <img
+        :src= "image"
+        class="card-img-bottom"
+        style="height: 100px; width: auto; text-align: center"
+      />
+    </center>
   </div>
 </template>
 
 
 <script>
-// import Pokemon from "pokemon-images";
-
 export default {
   name: "playerInfo",
   props: { player_id: { require: true } },
@@ -59,7 +56,6 @@ export default {
         const response = await this.axios.get(
           `http://localhost:3000/players/playerDetailsById/${this.player_id}`,
         );
-        // this.details = response;
           this.name=response.data.name;
           this.team_name=response.data.team_name;
           this.position=response.data.position;
@@ -81,14 +77,6 @@ export default {
     console.log("Player details mounted");
     this.getPlayerDetails(); 
   }
-    // get_image(pok_name) {
-    //   try {
-    //     return Pokemon.getSprite(pok_name);
-    //   } catch (err) {
-    //     return "https://assets.pokemon.com/assets/cms2/img/pokedex/full/158.png";
-    //   }
-    // },
-  // },
 };
 </script>
 

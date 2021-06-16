@@ -14,12 +14,12 @@
 
   </b-card>
   </div> -->
-  <div class="game-preview" style="width: 210px; height:180px; border-color:#2c3e50;">
+  <div class="game-preview" style="width: 240px; height:180px; border-color:#2c3e50; ">
     <div class="game-title" style="color:  #907FA4;">
                 <br/>
       <b>Event {{isCount}}:</b> 
     </div>
-    <ul class="game-content">
+    <ul class="game-content" style="padding-top: 5%">
       <li> date: {{ date }}</li>
       <li> time: {{ time }}</li>
       <li> gamemin: {{ gamemin }}</li>

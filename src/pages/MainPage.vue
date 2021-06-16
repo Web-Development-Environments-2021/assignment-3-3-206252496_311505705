@@ -5,19 +5,21 @@
       <div v-if="!$root.store.username">
         <b-row>
           <b-col align-self="baseline"><br/><br/><LeagueInfo></LeagueInfo></b-col>
-          <!-- <div class="vl"></div> -->
           <b-col align-self="stretch"><br/><br/><br/><br/><br/><br/><br/><LoginPage ></LoginPage></b-col>
         </b-row>
       </div>
       <div v-else>
         <b-row>
           <b-col align-self="baseline" ><br/><br/><LeagueInfo></LeagueInfo></b-col>
-          <!-- <div class="vl"></div> -->
           <b-col class="favorites" align-self="stretch" cols=4><br/><h3 class="subtitle">My Favorites:</h3><FavoriteGames :num_of_fav=3></FavoriteGames></b-col>
-
         </b-row>
       </div>  
     </b-container>
+    <footer>
+      <center>
+      <p style="padding-top: 3%"> Ⓒ Mor Zweig and Ori Ben-Artzy </p>
+      </center>
+    </footer>
   </div>
 </div>
 </template>
@@ -40,14 +42,14 @@ export default {
 .main{
   background-image: url("https://res.cloudinary.com/dwg8ravkv/image/upload/v1623752748/background_xlfkwv.jpg") ;
   background-repeat: no-repeat;
-  background-size: 100%;
-  height: 900px;
+  background-size: 105%;
+  height: 970px;
 }
 .RandomRecipes {
   margin: 10px 0 10px;
 }
 .blur {
-  -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+  -webkit-filter: blur(5px);
   filter: blur(2px);
 }
 ::v-deep .blur .recipe-preview {
@@ -56,7 +58,7 @@ export default {
 }
 .vl {
   border-left: 6px solid rgb(11, 131, 161);
-  height: 800px;
+  height: 820px;
   position: absolute;
   left: 50%;
   margin-left: -3px;
@@ -68,7 +70,7 @@ export default {
   text-align: center;
   display: inline-block;
   width: 350px;
-  height: 840px;
+  height: 880px;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

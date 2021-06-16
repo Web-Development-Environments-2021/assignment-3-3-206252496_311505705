@@ -30,28 +30,24 @@
       <b-card-title>{{title}}</b-card-title>
       <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
       <b-card-text>
-      <li> host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
-      <li> guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
-      <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
-      <li> stadium: {{ stadium }}</li>
-      <li> result: {{ result }}</li>
+        <li> host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+        <li> guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+        <li> date: {{ date }}</li>
+        <li> time: {{ hour }}</li>
+        <li> stadium: {{ stadium }}</li>
+        <li> result: {{ result }}</li>
       </b-card-text>
     </b-card-body>
-
-    <!-- <b-list-group flush> -->
-        <EventPreview 
-        v-for="(g,index) in events"
-        :date="g.date" 
-        :time="g.time" 
-        :gamemin="g.gamemin"
-        :event="g.event"
-        :count="index" 
-        :key="g.gamemin"></EventPreview>
-    <!-- </b-list-group> -->
+    <EventPreview 
+    v-for="(g,index) in events"
+    :date="g.date" 
+    :time="g.time" 
+    :gamemin="g.gamemin"
+    :event="g.event"
+    :count="index" 
+    :key="g.gamemin"></EventPreview>
   </b-card>
   <hr>
-
 </div>
 </template>
 
@@ -138,8 +134,6 @@ export default {
   },
   mounted(){
     console.log("Past game preview mounted")
-    // this.host_id(this.hostTeam);
-    // this.guest_id(this.guestTeam)
   } 
 };
 </script>
@@ -167,7 +161,5 @@ export default {
   width: 100%;
   overflow: hidden;
 }
-
-
 
 </style>

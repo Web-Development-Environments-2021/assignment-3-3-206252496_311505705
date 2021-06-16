@@ -23,18 +23,6 @@ export default {
     return {
       
     }},
-  methods: {
-    // onClickChild (player_id) {
-    //   console.log("**")
-    //   this.player_id=player_id;
-    // }
-  },
-  // mounted(){
-  //   if(this.player_id){
-  //     console.log("im here")
-  //     this.player_id2 = this.player_id
-  //   }
-  // }
 };
 </script>
 

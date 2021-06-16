@@ -1,10 +1,8 @@
 <template>
   <div class="container">
-
-        <br/>
+    <br/>
     <h1 class="title">Login</h1>
-        <br/>
-
+    <br/>
     <b-form @submit.prevent="onLogin">
       <b-form-group
         id="input-group-Username"
@@ -29,15 +27,15 @@
         label="Password:"
         label-for="Password"
       >
-        <b-form-input
-          id="Password"
-          type="password"
-          v-model="$v.form.password.$model"
-          :state="validateState('password')"
-        ></b-form-input>
-        <b-form-invalid-feedback>
-          Password is required
-        </b-form-invalid-feedback>
+      <b-form-input
+        id="Password"
+        type="password"
+        v-model="$v.form.password.$model"
+        :state="validateState('password')"
+      ></b-form-input>
+      <b-form-invalid-feedback>
+        Password is required
+      </b-form-invalid-feedback>
       </b-form-group>
 
       <b-button
@@ -50,21 +48,18 @@
       >
       <div class="mt-2">
        Do you already have an account?
-        <router-link to="register"> Register in here</router-link>
+      <router-link to="register"> Register in here</router-link>
       </div>
-    </b-form>
-    <b-alert
-      class="mt-2"
-      v-if="form.submitError"
-      variant="warning"
-      dismissible
-      show
-    >
-      Login failed: {{ form.submitError }}
-    </b-alert>
-    <!-- <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card> -->
+  </b-form>
+  <b-alert
+    class="mt-2"
+    v-if="form.submitError"
+    variant="warning"
+    dismissible
+    show
+  >
+    Login failed: {{ form.submitError }}
+  </b-alert>
   </div>
 </template>
 
@@ -107,7 +102,6 @@ export default {
           }
         );
         console.log(response);
-        // this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
         this.$router.push("/").catch(err=>{});
@@ -124,8 +118,6 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("login method go");
-
       this.Login();
     },
   }

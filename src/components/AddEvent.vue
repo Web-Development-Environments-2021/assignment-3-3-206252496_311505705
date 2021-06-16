@@ -121,21 +121,13 @@
     >
       Add Event failed: {{ form.submitError }}
     </b-alert>
-    <!-- <b-card class="mt-3 md-3" header="Form Data Result">
-      <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
-      <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
-    </b-card> -->
   </div>
 </template>
 
 <script>
 import {
   required,
-  minLength,
-  maxLength,
   alpha,
-  sameAs,
-  email,
   between
 } from "vuelidate/lib/validators";
 
@@ -190,10 +182,6 @@ export default {
       }
     }
   },
-  mounted() {
-    // console.log("mounted");
-    // console.log($v);
-  },
   methods: {
     validateState(param) {
       const { $dirty, $error } = this.$v.form[param];
@@ -243,7 +231,6 @@ export default {
         const response = await this.axios.get(
           `http://localhost:3000/league/getAllMatches`,
         );
-        //future games
           const future = response.data;
           this.future = [];
           this.future.push(...future);

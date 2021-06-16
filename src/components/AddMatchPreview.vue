@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h3 class="title">Add Match To League:</h3>
-    <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
+      <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
       <!-- Date -->
       <b-form-group
         id="input-group-date"
@@ -18,7 +18,7 @@
           Date is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.date.valid">
-         Format "12/02/2021" is required 
+          Format "12/02/2021" is required 
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -37,7 +37,7 @@
         <b-form-invalid-feedback v-if="!$v.form.time.required">
           Time is required
         </b-form-invalid-feedback>
-                <b-form-invalid-feedback v-if="!$v.form.time.valid">
+        <b-form-invalid-feedback v-if="!$v.form.time.valid">
         Format "18:00" is required 
         </b-form-invalid-feedback>
       </b-form-group>
@@ -111,7 +111,7 @@
         id="subtitle"
         >Add Match</b-button
       >
-    </b-form>
+  </b-form>
     <b-alert
       class="mt-2"
       v-if="form.submitError"
@@ -121,10 +121,6 @@
     >
       Add Match failed: {{ form.submitError }}
     </b-alert>
-    <!-- <b-card class="mt-3 md-3" header="Form Data Result">
-      <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
-      <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
-    </b-card> -->
   </div>
 </template>
 
@@ -184,10 +180,6 @@ export default {
         alpha
       }
     }
-  },
-  mounted() {
-    // console.log("mounted");
-    // console.log($v);
   },
   methods: {
     validateState(param) {

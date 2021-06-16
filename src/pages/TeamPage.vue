@@ -1,16 +1,16 @@
 <template>
 <div>
-    <div class="container">
-  <center>
-        <br/>
-    <h1 class="title">{{team_name}}</h1>
-    <img
-      :src= "team_logo"
-      class="card-img-bottom"
-      style="height: 100px; width: auto; text-align: center"
-    />
-  </center>
-    </div>
+  <div class="container">
+    <center>
+      <br/>
+      <h1 class="title">{{team_name}}</h1>
+      <img
+        :src= "team_logo"
+        class="card-img-bottom"
+        style="height: 100px; width: auto; text-align: center"
+      />
+    </center>
+  </div>
   <center>
     <br/>
     <br/>
@@ -19,22 +19,30 @@
     <b-button @click="showPlayer" style="background-color: #907FA4" >Show Players</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <br/>
   </center>
+  <hr>
+  <br/>
+  <div v-if="showplayer">
+    <center>
+    <h3 class="title" style="padding-bottom: 2%">Team's Players</h3>
     <hr>
-    <br/>
-        <div v-if="showplayer">
-      <div v-if="players.length != 0">
-        <PlayerSearch style="padding: 20px 20px; display: inline-block;"
-        v-for="(g,index) in playersLimited"
-        :name="g.name" 
-        :team_name="g.team_name" 
-        :image="g.image"
-        :position="g.position.toString()"
-        :player_id="g.player_id"    
-        :key="index"></PlayerSearch>
-      </div>
-        </div>
-      <div v-if="showpast">
-      <div v-if="past.length != 0">
+    </center>
+    <div v-if="players.length != 0">
+      <PlayerSearch style="padding: 20px 20px; display: inline-block;"
+      v-for="(g,index) in playersLimited"
+      :name="g.name" 
+      :team_name="g.team_name" 
+      :image="g.image"
+      :position="g.position.toString()"
+      :player_id="g.player_id"    
+      :key="index"></PlayerSearch>
+    </div>
+  </div>
+  <div v-if="showpast">
+    <center>
+      <h3 class="title" style="padding-bottom: 2%">Past Mathces</h3>
+      <hr>
+    </center>
+    <div v-if="past.length != 0">
       <PastGamePreview
         v-for="(g,index) in past"
         title="Match Details:"
@@ -46,10 +54,14 @@
         :result="g.result"  
         :events="g.events"  
         :key="index"></PastGamePreview>
-      </div>
-      </div>
-      <div v-if="showfuture">
-      <div v-if="future.length != 0">
+    </div>
+  </div>
+  <div v-if="showfuture">
+    <center>
+      <h3 class="title" style="padding-bottom: 2%">Future Mathces</h3>
+      <hr>
+    </center>
+    <div v-if="future.length != 0">
       <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
         v-for="(g,index) in future"
         title="Match Details:"
@@ -60,8 +72,8 @@
         :stadium="g.stadium"  
         :match_id="0"
         :key="index"></FutureGamePreview>
-      </div>
-      </div>
+    </div>
+  </div>
   </div>
 </template>
 

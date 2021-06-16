@@ -13,20 +13,19 @@
         :key="g.date"></FutureGamePreview>
         <div v-if="newsLimited.length==0" style="transition-delay: 5s">No games in favorites</div>
     </div>
-      <div v-else>
-        <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
-        v-for="g in games"
-        title="Match Details:"
-        :hostTeam="g.hometeam" 
-        :guestTeam="g.awayteam" 
-        :date="g.date" 
-        :hour="g.time"
-        :stadium="g.stadium" 
-        :match_id="0" 
-        :key="g.date"></FutureGamePreview>
-        <div v-if="games.length==0" style="transition-delay: 5s" >No games in favorites</div>
-
-      </div>
+    <div v-else>
+      <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
+      v-for="g in games"
+      title="Match Details:"
+      :hostTeam="g.hometeam" 
+      :guestTeam="g.awayteam" 
+      :date="g.date" 
+      :hour="g.time"
+      :stadium="g.stadium" 
+      :match_id="0" 
+      :key="g.date"></FutureGamePreview>
+      <div v-if="games.length==0" style="transition-delay: 5s" >No games in favorites</div>
+    </div>
   </div>
 </template>
 

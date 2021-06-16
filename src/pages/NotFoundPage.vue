@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <h1>Four Oh Four you didn't</h1>
-    <router-link to="/" exact>ET Go Home</router-link>
+    <h1>Page Not Found</h1>
+    <br/>
+    <router-link to="/" exact>Go To HomePage</router-link>
   </div>
 </template>
 

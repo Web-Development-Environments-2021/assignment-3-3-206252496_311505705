@@ -3,34 +3,36 @@
   <div class="Games">
     <div class="container">
       <br/>
-    <h1 class="title">Match Page</h1>
+      <h1 class="title">Match Page</h1>
     </div>
     <center>
-    <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <b-button @click="showPast" style="background-color: #907FA4" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button @click="showPast" style="background-color: #907FA4" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     </center>
     <hr>
     <div v-if="showfuture" class="component">
       <div v-if="future.length != 0">
-      <center>
-      <h3 class="title">Future Mathces</h3>
-      </center>
-      <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
-        v-for="(g,index) in future"
-        title="Match Details:"
-        :hostTeam="g.hometeam" 
-        :guestTeam="g.awayteam" 
-        :date="g.date" 
-        :hour="g.time"
-        :stadium="g.stadium"  
-        :match_id="g.match_id"
-        :key="index"></FutureGamePreview>
+        <center>
+          <h3 class="title">Future Mathces</h3>
+          <hr>
+        </center>
+        <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
+          v-for="(g,index) in future"
+          title="Match Details:"
+          :hostTeam="g.hometeam" 
+          :guestTeam="g.awayteam" 
+          :date="g.date" 
+          :hour="g.time"
+          :stadium="g.stadium"  
+          :match_id="g.match_id"
+          :key="index"></FutureGamePreview>
       </div>
     </div>
-      <div v-if="showpast">
-        <div v-if="past.length != 0">
+    <div v-if="showpast">
+      <div v-if="past.length != 0">
         <center>
-        <h3 class="title">Past Mathces</h3>
+          <h3 class="title">Past Mathces</h3>
+          <hr>
         </center>
         <PastGamePreview
           v-for="(g,index) in past"
@@ -43,16 +45,16 @@
           :result="g.result"  
           :events="g.events"  
           :key="index"></PastGamePreview>
-        </div>
       </div>
+    </div>
   </div>
 </div>
 </template>
 
 
 <script>  
-  import PastGamePreview from "../components/PastGamePreview";
-  import FutureGamePreview from "../components/FutureGamePreview";
+import PastGamePreview from "../components/PastGamePreview";
+import FutureGamePreview from "../components/FutureGamePreview";
 export default {
   name: "MatchPage",
   components: {
@@ -120,10 +122,4 @@ export default {
   margin-left: 20px; 
   width: 500px; 
 }
-/* .Games{
-    background-color: #f6e7cb;
-}
-.component{
-      background-color: #f6e7cb;
-} */
 </style>
