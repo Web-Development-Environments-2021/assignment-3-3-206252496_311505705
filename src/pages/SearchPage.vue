@@ -29,7 +29,7 @@
       <div v-if="isPlayer">
       <div v-if="players.length != 0">
             <mdb-datatable
-            v-model="players_data"
+            :data="players_data"
             striped
             bordered
             fixed

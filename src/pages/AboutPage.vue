@@ -147,10 +147,10 @@ export default {
   cursor: default;
 }
 .mb-2{
-  max-width: 21rem;
+  width: 21rem;
    display: inline-block;
 }
 .api{
-  max-width: 62rem;
+  width: 62rem;
 }
 </style>

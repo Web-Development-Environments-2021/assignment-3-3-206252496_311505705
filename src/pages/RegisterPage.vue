@@ -1,6 +1,9 @@
 <template>
   <div class="container">
+    <br/>
+    <br/>
     <h1 class="title">Register</h1>
+        <br/>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       <!-- username -->
       <b-form-group
@@ -49,7 +52,7 @@
         <b-form-group
         id="input-group-lastname"
         label-cols-sm="3"
-        label="lastname:"
+        label="Last name:"
         label-for="lastname">
         <b-form-input
           id="lastname"
@@ -87,7 +90,7 @@
             <b-form-group
         id="input-group-email"
         label-cols-sm="3"
-        label="email:"
+        label="Email address:"
         label-for="email"
       >
         <b-form-input
@@ -108,7 +111,7 @@
             <b-form-group
         id="input-group-profilePic"
         label-cols-sm="3"
-        label="profilePic:"
+        label="Profile picture:"
         label-for="profilePic"
       >
         <b-form-input
@@ -118,7 +121,7 @@
           :state="validateState('profilePic')"
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.email.required">
-          profilePic is required
+          Profile picture is required
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -139,7 +142,7 @@
           Password is required
         </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.password.valid">
-          password must contain at least one number and one special character
+          Password must contain at least one number and one special character
         </b-form-invalid-feedback>
         <b-form-text v-else-if="$v.form.password.$error" text-variant="info">
           Your password should be <strong>strong</strong>. <br />
@@ -180,10 +183,11 @@
         variant="primary"
         style="width:250px;"
         class="ml-5 w-75"
+        id="subtitle"
         >Register</b-button
       >
       <div class="mt-2">
-        You have an account already?
+        Do you have an account already?
         <router-link to="login"> Log in here</router-link>
       </div>
     </b-form>
@@ -340,4 +344,22 @@ export default {
 .container {
   max-width: 500px;
 }
+
+#subtitle{
+	background-color: #8585ad;
+	border: none;
+	color: white;
+	padding: 8px 16px;
+	text-align: center;
+	font-size: 17px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	transition: 0.3s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 12px;
+  }
+
+#subtitle:hover {opacity: 1}
 </style>

@@ -2,7 +2,7 @@
   <div id="app">
     <!-- type="dark" -->
     <b-navbar toggleable="lg" type="dark" style="background-color:#2c3e50">
-      <b-navbar-brand :to="{ name: 'main' }">Superliga Vue</b-navbar-brand>
+      <b-navbar-brand :to="{ name: 'main' }">Superliga</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
