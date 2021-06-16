@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card class="playerCard" style="width: 350px; height:300px; display: inline-block">
+    <b-card class="playerCard" style="width: 400px; height:300px; display: inline-block">
       <div class="card-body">
         <h5 class="card-title">{{ name }}</h5>
         <p class="card-text">
@@ -87,14 +87,14 @@ props: {
 }
 
 .playerCard{
-  top: 50px;
-  bottom: 5px;
+  /* top: 50px;
+  bottom: 5px; */
   text-align: center;
   display: inline-block;
-  width: 350px;
-  height: 840px;
+  /* width: 350px;
+  height: 840px; */
   position: relative;
-  margin: 10px 10px;
+  /* margin: 10px 10px; */
   border-style: solid;
   border-radius: 10px;
   border-width: 5px;

@@ -1,32 +1,32 @@
 <template>
 <div>
-      <div class="container">
-      <br/>
+  <div class="container">
+    <br/>
     <h1 class="title">Search Page</h1>
-      </div>
+    </div>
     <hr>
     <br/>
-      <center>
-        <h4 style="padding: 0px 20px;"> What would you like to search:</h4>
-            <b-button @click="showTeams" style="background-color: #907FA4" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            <b-button  @click="showPlayers"  style="background-color: #907FA4" >Players</b-button>
-      </center>
+    <center>
+      <h4 style="padding: 0px 20px;"> What would you like to search:</h4>
+      <b-button @click="showTeams" style="background-color: #907FA4" >Teams</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button  @click="showPlayers"  style="background-color: #907FA4" >Players</b-button>
+    </center>
     <br/>
-      <center>
-        <b-input-group prepend="Search Query:" id="search-input" style="text-align: center">
-          <b-form-input v-model="searchQuery"></b-form-input>
-          <b-input-group-append>
-              <div class="container">
-            <b-button style="background-color:#2c3e50" :disabled='isTeam == isPlayer' @click="Search">Search</b-button>
-              </div>
-          </b-input-group-append>
-        </b-input-group>
-      </center>
-      <br/>
-      <hr>
-      <!-- Your search Query: {{ searchQuery }} -->
-      <br/>
-      <div v-if="isPlayer">
+    <center>
+      <b-input-group prepend="Search Query:" id="search-input" style="text-align: center">
+        <b-form-input v-model="searchQuery"></b-form-input>
+        <b-input-group-append>
+            <div class="container">
+          <b-button style="background-color:#2c3e50" :disabled='isTeam == isPlayer' @click="Search">Search</b-button>
+            </div>
+        </b-input-group-append>
+      </b-input-group>
+    </center>
+    <br/>
+    <hr>
+    <!-- Your search Query: {{ searchQuery }} -->
+    <br/>
+    <div v-if="isPlayer">
       <div v-if="players.length != 0">
             <mdb-datatable
             :data="players_data"
@@ -39,6 +39,7 @@
         Your search did not match any Player. 
       </div>
       <br/>
+      <center>
         <PlayerSearch style="padding: 20px 20px; display: inline-block;"
         v-for="(g,index) in playersLimited"
         :name="g.name" 
@@ -47,8 +48,9 @@
         :position="g.position.toString()"
         :player_id="g.player_id"    
         :key="index"></PlayerSearch>
+      </center>
     </div>
-      <div v-if="isTeam">
+    <div v-if="isTeam">
       <div v-if="teams.length != 0">
         <mdb-datatable 
         :data="teams_data"
@@ -56,19 +58,18 @@
         bordered
         fixed
         />
-
       </div>
       <div v-else-if="search">
         Your search did not match any Team. 
       </div>
-        <br/>
-        <TeamSearch style="padding: 20px 20px; display: inline-block;"
-        v-for="g in teamsLimited"
-        :team_name="g.team_name" 
-        :team_logo="g.team_logo" 
-        :team_id="g.team_id.toString()"    
-        :key="g.team_name"></TeamSearch>
-      </div>
+      <br/>
+      <TeamSearch style="padding: 20px 20px; display: inline-block;"
+      v-for="g in teamsLimited"
+      :team_name="g.team_name" 
+      :team_logo="g.team_logo" 
+      :team_id="g.team_id.toString()"    
+      :key="g.team_name"></TeamSearch>
+    </div>
   </div>
 </template>
 
@@ -141,6 +142,10 @@ export default {
       this.search = false;
     },
     async Search() {
+      this.$root.store.lastSearchQuery(this.searchQuery);
+      this.$root.store.searchTeam(this.isTeam);
+      this.$root.store.searchPlayer(this.isPlayer);
+
       if (this.isPlayer){
         this.Players()
       }
@@ -202,7 +207,13 @@ export default {
     },
     teamsLimited() {
         return this.teams.slice(0, 20)
-    }
+    },
+},
+mounted(){
+  this.isPlayer=this.$root.store.search_player;
+  this.isTeam=this.$root.store.search_team;
+  this.searchQuery=this.$root.store.searchquery;
+  this.Search()
 }
 }
 </script>

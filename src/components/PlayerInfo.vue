@@ -1,33 +1,34 @@
 <template>
-  <div class="card" style="width: 18rem">
-    <div class="card-body">
-      <h5 class="card-title" style="text-align: center">{{ name }}</h5>
-      <p class="card-text">
-      <br/>
-      Team Name: {{ team_name }}
-      <br/>
-      Position: {{ position }}
-      <br/>
-      commonname: {{commonname}},     
-       <br/>
-      nationality: {{nationality}},
-      <br/>
-      birthdate: {{birthdate}},
-      <br/>
-      birthplace: {{birthplace}},
-      <br/>
-      height:{{height}},
-      <br/>
-      weight:{{weight}}
-      </p>
-    </div>
-    <center>
-      <img
-        :src= "image"
-        class="card-img-bottom"
-        style="height: 100px; width: auto; text-align: center"
-      />
-    </center>
+  <div class="info">
+    <div class="card" style="width: 1000px;">
+      <div class="card-body" >
+        <h5 class="card-title" style="text-align: center; font-size:190%">{{ name }}</h5>
+        <p class="card-text" style="text-align: left; font-size:130%">
+        <br/>
+        Team Name: {{ team_name }}
+        <br/>
+        Position: {{ position }}
+        <br/>
+        Common Name: {{commonname}}    
+        <br/>
+        Nationality: {{nationality}}
+        <br/>
+        Birthdate: {{birthdate}}
+        <br/>
+        Birth Place: {{birthplace}}
+        <br/>
+        Height:{{height}}
+        <br/>
+        Weight:{{weight}}
+        </p>
+      </div>
+      <center>
+        <img
+          :src= "image"
+          class="card-img-right"
+        />
+      </center>
+      </div>
   </div>
 </template>
 
@@ -81,9 +82,33 @@ export default {
 </script>
 
 <style>
-.card {
+/* .card {
   width: 12rem;
   display: inline-block;
   margin: 6px;
+} */
+
+.card {
+  background-color:  #BCC8A5;
+  display: inline-block;
+  width: 600px;
+  height: 570px;
+  position:fixed;
+  margin: 10px 10px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 5px;
+  border-color:#2c3e50;
+}
+
+.card-img-right{
+  background-color:  white;
+  display:inline-block;
+  margin: 10px 10px;
+  /* padding-left: 70%; */
+    border-style: solid;
+  border-radius: 5px;
+  border-width: 5px;
+  border-color:#2c3e50;
 }
 </style>

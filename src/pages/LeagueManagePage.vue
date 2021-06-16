@@ -2,7 +2,7 @@
   <div>    
     <br/>
     <div class="container">
-      <h1 class="title">League Manage Page</h1>
+      <h1 class="title">League Management Page</h1>
     </div>
     <hr>
     <center>
@@ -23,6 +23,8 @@
       <AddResult></AddResult>
     </div>
     <hr>
+    <br/>
+    <h3 style="padding: 0px 20px;"> All League Matches</h3>
     <br/>
     <div v-if="future.length != 0">
           <mdb-datatable 

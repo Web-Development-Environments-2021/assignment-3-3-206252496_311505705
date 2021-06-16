@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="container" :key="componentKey">
+  <div class="container" >
     <br/>
     <br/>
     <h1 class="title">About</h1>
