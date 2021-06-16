@@ -3,7 +3,7 @@
   <div class="Games">
     <div class="container">
       <br/>
-      <h1 class="title">Match Page</h1>
+      <h1 class="title">Matches Page</h1>
     </div>
     <center>
       <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

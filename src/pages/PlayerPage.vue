@@ -1,9 +1,14 @@
 <template>
+<div>
   <div class="container">
-    <h1 class="title">Player Page</h1>
-    <PlayerInfo :player_id="player_id"></PlayerInfo>
+    <br/>
+    <!-- <h1 class="title">Player Page</h1> -->
   </div>
-
+    <div class="container">
+      <br/>
+      <PlayerInfo :player_id="player_id"></PlayerInfo>
+    </div>
+  </div>
 </template>
 
 <script>

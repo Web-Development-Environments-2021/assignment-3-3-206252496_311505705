@@ -11,7 +11,7 @@
         :stadium="g.stadium"  
         :match_id="0"
         :key="g.date"></FutureGamePreview>
-        <div v-if="newsLimited.length==0" style="transition-delay: 5s">No games in favorites</div>
+        <div v-if="newsLimited.length==0" style="transition-delay: 5s; font-size:130%"><br/>You dont have favorite matches yet<br/><br/> To add some go the matchas page!</div>
     </div>
     <div v-else>
       <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
@@ -24,7 +24,7 @@
       :stadium="g.stadium" 
       :match_id="0" 
       :key="g.date"></FutureGamePreview>
-      <div v-if="games.length==0" style="transition-delay: 5s" >No games in favorites</div>
+      <div v-if="games.length==0" style="transition-delay: 5s; font-size:130%"><br/>You dont have favorite matches yet<br/><br/> To add some go the matchas page!</div>
     </div>
   </div>
 </template>

@@ -76,6 +76,9 @@ Vue.config.productionTip = false;
 const shared_data = {
   username: localStorage.username,
   permission: localStorage.permission,
+  searchquery: localStorage.searchquery,
+  search_player: localStorage.search_player,
+  search_team: localStorage.search_team,
   // username: "hilla",
   login(username) {
     localStorage.setItem("username", username);
@@ -90,7 +93,29 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("searchquery");
+    localStorage.removeItem("search_player");
+    localStorage.removeItem("search_team");
+
     this.username = undefined;
+    this.searchquery = "";
+    this.search_player = undefined;
+    this.search_team = undefined;
+  },
+  lastSearchQuery(searchquery) {
+    localStorage.setItem("searchquery", searchquery);
+    this.searchquery = searchquery;
+    console.log("searchquery", this.searchquery);
+  },
+  searchPlayer(search_player) {
+    localStorage.setItem("search_player", search_player);
+    this.search_player = search_player;
+    console.log("search_player", this.search_player);
+  },
+  searchTeam(search_team) {
+    localStorage.setItem("search_team", search_team);
+    this.search_team = search_team;
+    console.log("search_team", this.search_team);
   },
 };
 // console.log(shared_data);
