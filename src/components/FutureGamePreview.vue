@@ -31,8 +31,8 @@
         <b-card-text style="  text-align: left;">
           <li> host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
           <li> guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
-          <!-- <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
-          <a :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> -->
+          <!-- <a @click="play_host_id" :href="$router.resolve({name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}).href">link1</a>
+          <a @click="play_guest_id" :href="$router.resolve({name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}).href">link2</a> --> 
           <li> date: {{ date }}</li>
           <li> time: {{ hour }}</li>
           <li> stadium: {{ stadium }}</li>

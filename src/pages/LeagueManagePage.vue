@@ -27,7 +27,7 @@
     <h3 style="padding: 0px 20px;"> All League Matches</h3>
     <br/>
     <div v-if="future.length != 0">
-          <mdb-datatable 
+          <mdb-datatable
           :data="data"
           striped
           bordered
@@ -60,37 +60,37 @@ export default {
       data: {
       columns: [
             {
-              label: 'match_id ⇅',
+              label: 'Match ID ⇅',
               field: 'match_id',
               sort: 'asc'
             },
             {
-              label: 'hometeam ⇅',
+              label: 'Host Team ⇅',
               field: 'hometeam',
               sort: 'asc'
             },
             {
-              label: 'awayteam ⇅',
+              label: 'Guest Team ⇅',
               field: 'awayteam',
               sort: 'asc'
             },
             {
-              label: 'date ⇅',
+              label: 'Date ⇅',
               field: 'date',
               sort: 'asc'
             },
             {
-              label: 'time ⇅',
+              label: 'Time ⇅',
               field: 'time',
               sort: 'asc'
             },
             {
-              label: 'stadium ⇅',
+              label: 'Stadium ⇅',
               field: 'stadium',
               sort: 'asc'
             },
             {
-              label: 'result ⇅',
+              label: 'Result ⇅',
               field: 'result',
               sort: 'asc'
             },

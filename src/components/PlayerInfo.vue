@@ -1,6 +1,6 @@
 <template>
   <div class="info">
-    <div class="card" style="width: 1000px;">
+    <div class="cardPlayer" style="width: 1000px;">
       <div class="card-body" >
         <h5 class="card-title" style="text-align: center; font-size:190%">{{ name }}</h5>
         <p class="card-text" style="text-align: left; font-size:130%">
@@ -88,7 +88,7 @@ export default {
   margin: 6px;
 } */
 
-.card {
+.cardPlayer {
   background-color:  #BCC8A5;
   display: inline-block;
   width: 600px;
