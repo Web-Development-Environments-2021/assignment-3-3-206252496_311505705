@@ -14,27 +14,52 @@
   <center>
     <br/>
     <br/>
-    <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    <b-button @click="showPast" style="background-color: #907FA4" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showPast" style="background-color: #907FA4" >🡠 Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <b-button @click="showPlayer" style="background-color: #907FA4" >Show Players</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches 🡢</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     <br/>
   </center>
   <hr>
   <br/>
+    <div v-if="showfuture">
+    <center>
+      <h3 class="title" style="padding-bottom: 2%">Future Mathces</h3>
+      <hr>
+    </center>
+    <div v-if="future.length != 0">
+      <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
+        v-for="(g,index) in future"
+        title="Match Details:"
+        :hostTeam="g.hometeam" 
+        :guestTeam="g.awayteam" 
+        :date="g.date" 
+        :hour="g.time"
+        :stadium="g.stadium"  
+        :match_id="0"
+        :key="index"></FutureGamePreview>
+      </div>
+      <div else>
+        <center>
+        <h4> No Future Matches</h4>
+        </center>
+      </div>
+  </div>
   <div v-if="showplayer">
     <center>
     <h3 class="title" style="padding-bottom: 2%">Team's Players</h3>
     <hr>
     </center>
     <div v-if="players.length != 0">
-      <PlayerSearch style="padding: 20px 20px; display: inline-block;"
-      v-for="(g,index) in playersLimited"
-      :name="g.name" 
-      :team_name="g.team_name" 
-      :image="g.image"
-      :position="g.position.toString()"
-      :player_id="g.player_id"    
-      :key="index"></PlayerSearch>
+      <center>
+        <PlayerSearch style="padding: 20px 20px; display: inline-block;"
+        v-for="(g,index) in playersLimited"
+        :name="g.name" 
+        :team_name="g.team_name" 
+        :image="g.image"
+        :position="g.position.toString()"
+        :player_id="g.player_id"    
+        :key="index"></PlayerSearch>
+      </center>
     </div>
   </div>
   <div v-if="showpast">
@@ -55,23 +80,10 @@
         :events="g.events"  
         :key="index"></PastGamePreview>
     </div>
-  </div>
-  <div v-if="showfuture">
+    <div else>
     <center>
-      <h3 class="title" style="padding-bottom: 2%">Future Mathces</h3>
-      <hr>
+    <h4> No Past Matches</h4>
     </center>
-    <div v-if="future.length != 0">
-      <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
-        v-for="(g,index) in future"
-        title="Match Details:"
-        :hostTeam="g.hometeam" 
-        :guestTeam="g.awayteam" 
-        :date="g.date" 
-        :hour="g.time"
-        :stadium="g.stadium"  
-        :match_id="0"
-        :key="index"></FutureGamePreview>
     </div>
   </div>
   </div>
@@ -91,7 +103,7 @@ export default {
   },
   props: {
       team_id: {
-        type: Number,
+        type: [Number,String],
         required: true
       },
       team_name: {
@@ -130,6 +142,10 @@ export default {
 
     },
     async teamPage() {
+      if (this.team_id == '0') {
+        this.splitID();
+        this.splitName();
+      }
       try {
         const response = await this.axios.get(
           `http://localhost:3000/teams/teamFullDetails/${this.team_id}`,
@@ -152,6 +168,10 @@ export default {
       }
     },
     async teamDetails() {
+      if (this.team_id == '0') {
+        this.splitID();
+        this.splitName();
+      }
       try {
         const response = await this.axios.get(
           `http://localhost:3000/teams/searchTeam/${this.team_name}`,
@@ -162,6 +182,12 @@ export default {
         console.log("error in update teams in search")
         console.log(error);
       }
+    },
+    splitID() {
+      this.team_id = parseInt(this.team_name.split(' ')[0]);
+    },
+    splitName() {
+      this.team_name = this.team_name.split(' ')[1];
     },
   },
     computed: {

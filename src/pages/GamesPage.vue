@@ -6,14 +6,14 @@
       <h1 class="title">Matches Page</h1>
     </div>
     <center>
-      <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <b-button @click="showPast" style="background-color: #907FA4" >Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button @click="showPast" style="background-color: #907FA4" >🡠 Show Past Matches</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      <b-button @click="showFuture" style="background-color: #907FA4" >Show Future Matches 🡢</b-button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
     </center>
     <hr>
     <div v-if="showfuture" class="component">
       <div v-if="future.length != 0">
         <center>
-          <h3 class="title">Future Mathces</h3>
+          <h3 class="title">Future Matches</h3>
           <hr>
         </center>
         <FutureGamePreview style="display: inline-block; padding: 20px 20px;"
@@ -31,7 +31,7 @@
     <div v-if="showpast">
       <div v-if="past.length != 0">
         <center>
-          <h3 class="title">Past Mathces</h3>
+          <h3 class="title">Past Matches</h3>
           <hr>
         </center>
         <PastGamePreview

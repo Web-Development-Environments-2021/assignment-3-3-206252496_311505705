@@ -30,12 +30,12 @@
       <b-card-title>{{title}}</b-card-title>
       <!-- <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title> -->
       <b-card-text>
-        <li> host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
-        <li> guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
-        <li> date: {{ date }}</li>
-        <li> time: {{ hour }}</li>
-        <li> stadium: {{ stadium }}</li>
-        <li> result: {{ result }}</li>
+        <li> Host team: <router-link @click="play_host_id" :to="{name:`teams`, params:{team_id:parseInt(hostTeamID), team_name:hostTeam}}">{{ hostTeam }}</router-link></li>
+        <li> Guest team: <router-link @click="play_guest_id" :to="{name:`teams`, params:{team_id:parseInt(guestTeamID), team_name:guestTeam}}">{{ guestTeam }}</router-link></li>
+        <li> Date: {{ date }}</li>
+        <li> Time: {{ hour }}</li>
+        <li> Stadium: {{ stadium }}</li>
+        <li> Result: {{ result }}</li>
       </b-card-text>
     </b-card-body>
     <EventPreview 

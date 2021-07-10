@@ -63,7 +63,7 @@
         <b-form-invalid-feedback v-if="!$v.form.lastname.required">
           Last name is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.username.alpha">
+        <b-form-invalid-feedback v-if="!$v.form.lastname.valid">
           Last name must be letters only
         </b-form-invalid-feedback>
           </b-form-group>
@@ -247,7 +247,10 @@ export default {
       },
       lastname: {
         required,
-        alpha
+          valid: function(value) {
+          const containsNumber = /^[a-zA-Z\s]*$/.test(value)
+          return containsNumber
+      },
       },
       country: {
         required

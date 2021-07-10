@@ -120,7 +120,12 @@ export default {
             result: this.form.result
           }
         );
+        console.log(response.data)
+          if (response.data == "Result updated"){
           this.$root.toast("New Result", "New result was added successfully", "success");
+          }
+          else{
+          this.$root.toast("New Result", "The match hasn't happend yet","danger");}
 
       } catch (error) {
         console.log("error in add Result")

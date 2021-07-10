@@ -20,10 +20,10 @@
       <b>Event {{isCount}}:</b> 
     </div>
     <ul class="game-content" style="padding-top: 5%">
-      <li> date: {{ date }}</li>
-      <li> time: {{ time }}</li>
-      <li> gamemin: {{ gamemin }}</li>
-      <li> event: {{ event }}</li>
+      <li> Date: {{ date }}</li>
+      <li> Time: {{ time }}</li>
+      <li> Game Minute: {{ gamemin }}</li>
+      <li> Event: {{ event }}</li>
     </ul>
   </div>
 </template>

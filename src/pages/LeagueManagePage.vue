@@ -114,7 +114,7 @@ export default {
           this.data.rows = [];
           response.data.forEach(element => {
             if (element.result == undefined ||  element.result == null || element.result == "undefined"){
-              element.result = "future game"
+              element.result = "-"
             }
             let newdate = element.date.split("/")
             let date = newdate[2]+"-"+newdate[1]+"-"+newdate[0]

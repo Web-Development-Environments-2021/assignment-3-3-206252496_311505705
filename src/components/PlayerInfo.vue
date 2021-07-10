@@ -36,7 +36,8 @@
 <script>
 export default {
   name: "playerInfo",
-  props: { player_id: { require: true } },
+  props: { player_id:
+   { require: true } },
    data() {
     return {
           name : "",

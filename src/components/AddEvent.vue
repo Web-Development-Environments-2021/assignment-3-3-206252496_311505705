@@ -97,8 +97,8 @@
         <b-form-invalid-feedback v-if="!$v.form.event.required">
           Event description is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.event.alpha">
-          Event must be letters only
+        <b-form-invalid-feedback v-if="!$v.form.event.valid">
+          Event description must contain letters only
         </b-form-invalid-feedback>
         </b-form-group>
 
@@ -178,7 +178,10 @@ export default {
       },
       event: {
         required,
-        alpha
+          valid: function(value) {
+          const containsNumber = /^[a-zA-Z\s]*$/.test(value)
+          return containsNumber
+      },
       }
     }
   },

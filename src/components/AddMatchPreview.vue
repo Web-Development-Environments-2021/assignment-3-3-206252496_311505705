@@ -97,8 +97,8 @@
         <b-form-invalid-feedback v-if="!$v.form.stadium.required">
           Stadium name is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.stadium.alpha">
-          Stadium must be letters only
+        <b-form-invalid-feedback v-if="!$v.form.stadium.valid">
+          Stadium must contain letters only
         </b-form-invalid-feedback>
         </b-form-group>
 
@@ -127,11 +127,8 @@
 <script>
 import {
   required,
-  minLength,
-  maxLength,
   alpha,
-  sameAs,
-  email
+  alphaNum
 } from "vuelidate/lib/validators";
 
 export default {
@@ -177,7 +174,10 @@ export default {
       },
       stadium: {
         required,
-        alpha
+          valid: function(value) {
+          const containsNumber = /^[a-zA-Z\s]*$/.test(value)
+          return containsNumber
+      },
       }
     }
   },

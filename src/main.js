@@ -84,6 +84,7 @@ const shared_data = {
     localStorage.setItem("username", username);
     this.username = username;
     console.log("login", this.username);
+    this.searchquery = "";
   },
   loginPermission(permission) {
     localStorage.setItem("permission", permission);
